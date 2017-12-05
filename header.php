@@ -35,10 +35,17 @@
 					<div class="logo">
 						<a href="<?php echo home_url(); ?>">
 							<!-- svg logo - toddmotto.com/mastering-svg-use-for-a-retina-web-fallbacks-with-png-script -->
-							<img src="<?php echo get_template_directory_uri(); ?>/img/logo.svg" alt="Logo" class="logo-img">
+							<img src="<?php echo get_template_directory_uri(); ?>/img/logo.png" alt="Logo" class="logo-img">
 						</a>
 					</div>
 					<!-- /logo -->
+
+          <div class="headertext">
+            <a href="<?php echo home_url(); ?>">
+              <h1>Studio Farah</h1>
+              <h2>Fußpflege und Kosmetik</h2>
+            </a>
+          </div>
 
 					<!-- nav -->
 					<nav class="nav" role="navigation">
