@@ -13,8 +13,6 @@
 
         <?php the_content(); ?>
 
-        <?php comments_template( '', true ); // Remove if you don't want comments ?>
-
         <?php
 
         // check if the flexible content field has rows of data
@@ -28,14 +26,16 @@
 
                 $behandlungskategorie = get_sub_field('behandlungskategorie');
                 $behandlungskategorie_beschreibung = get_sub_field('behandlungskategorie_beschreibung');
+                $behandlungskategorie_bild = get_sub_field('behandlungskategorie_bild');
 
                 echo '<h2>' . $behandlungskategorie . '</h2>';
                 echo '<p>' . $behandlungskategorie_beschreibung . '</p>';
+                echo '<img src="' . $behandlungskategorie_bild['url'] . '" />';
 
                 // check if the nested repeater field has rows of data
                 if( have_rows('behandlungen') ):
 
-                  echo '<table>';
+                  echo '<table class="table">';
 
                   // loop through the rows of data
                     while ( have_rows('behandlungen') ) : the_row();
