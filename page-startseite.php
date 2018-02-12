@@ -4,8 +4,6 @@
     <!-- section -->
     <section>
 
-      <h1><?php the_title(); ?></h1>
-
     <?php if (have_posts()): while (have_posts()) : the_post(); ?>
 
       <!-- article -->
@@ -26,9 +24,11 @@
                 $titelbild_beschreibung = get_sub_field('titelbild_beschreibung');
                 $titelbild = get_sub_field('titelbild');
 
+                echo '<div class="hero-image" style="background-image: url(' . $titelbild['url'] . ');">';
                 echo '<h2>' . $titelbild_headline . '</h2>';
                 echo '<p>' . $titelbild_beschreibung . '</p>';
-                echo '<img src="' . $titelbild['url'] . '" />';
+                // echo '<img src="' . $titelbild['url'] . '" />';
+                echo '</div>';
 
               endif;
 
@@ -62,7 +62,7 @@
 
                 $ausrichtung = $ausrichtung_bild ? $ausrichtung_bild['0'] : '';
 
-                echo '<div class="' . $ausrichtung . '">';
+                echo '<div class="textblock ' . $ausrichtung . '">';
                   echo '<h2>' . $textblock_headline . '</h2>';
                   echo '<p>' . $textblock_beschreibung . '</p>';
                   echo '<img src="' . $textblock_bild['url'] . '" />';

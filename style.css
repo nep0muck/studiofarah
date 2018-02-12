@@ -413,3 +413,19 @@ a img.aligncenter {
 .acf-map img {
    max-width: inherit !important;
 }
+
+
+
+.hero-image {
+	background-position: center;
+	background-size: cover;
+	width: 100%;
+	height: 500px;
+}
+
+.textblock {
+	display: flex;
+}
+
+.textblock img {
+}
