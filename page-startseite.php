@@ -63,9 +63,11 @@
                 $ausrichtung = $ausrichtung_bild ? $ausrichtung_bild['0'] : '';
 
                 echo '<div class="textblock ' . $ausrichtung . '">';
-                  echo '<h2>' . $textblock_headline . '</h2>';
-                  echo '<p>' . $textblock_beschreibung . '</p>';
                   echo '<img src="' . $textblock_bild['url'] . '" />';
+                  echo '<div class="textblock-content">';
+                    echo '<h2>' . $textblock_headline . '</h2>';
+                    echo '<p>' . $textblock_beschreibung . '</p>';
+                  echo '</div>';
                 echo '</div>';
 
                 // echo '<pre>';

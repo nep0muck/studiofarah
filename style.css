@@ -425,7 +425,22 @@ a img.aligncenter {
 
 .textblock {
 	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.textblock .textblock-content {
+	flex: 5;
+}
+
+.textblock:nth-child(even) .textblock-content {
+	order: 1;
 }
 
 .textblock img {
+	flex: 1;
+}
+
+.textblock:nth-child(even) img {
+	order: 2;
 }
