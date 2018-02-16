@@ -25,9 +25,11 @@
                 $titelbild = get_sub_field('titelbild');
 
                 echo '<div class="hero-image" style="background-image: url(' . $titelbild['url'] . ');">';
-                echo '<h2>' . $titelbild_headline . '</h2>';
-                echo '<p>' . $titelbild_beschreibung . '</p>';
-                // echo '<img src="' . $titelbild['url'] . '" />';
+                echo '<div class="hero-textbox">';
+                  echo '<h2>' . $titelbild_headline . '</h2>';
+                  echo '<p>' . $titelbild_beschreibung . '</p>';
+                  echo '<button class="btn">Gleich Termin vereinbaren!</button>';
+                echo '</div>';
                 echo '</div>';
 
               endif;
