@@ -28,7 +28,7 @@
                 echo '<div class="hero-textbox">';
                   echo '<h2>' . $titelbild_headline . '</h2>';
                   echo '<p>' . $titelbild_beschreibung . '</p>';
-                  echo '<button class="btn">Gleich Termin vereinbaren!</button>';
+                  echo '<button class="btn btn-outline-primary btn-lg" type="submit">Gleich Termin vereinbaren!</button>';
                 echo '</div>';
                 echo '</div>';
 
