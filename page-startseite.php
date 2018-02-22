@@ -24,6 +24,10 @@
                 $titelbild_beschreibung = get_sub_field('titelbild_beschreibung');
                 $titelbild = get_sub_field('titelbild');
 
+                // echo '<pre>';
+                // echo var_dump($titelbild);
+                // echo '</pre>';
+
                 echo '<div class="hero-image" style="background-image: url(' . $titelbild['url'] . ');">';
                 echo '<div class="hero-textbox">';
                   echo '<h2>' . $titelbild_headline . '</h2>';
@@ -62,10 +66,8 @@
                 $textblock_bild = get_sub_field('textblock_bild');
                 $ausrichtung_bild = get_sub_field('ausrichtung_bild');
 
-                $ausrichtung = $ausrichtung_bild ? $ausrichtung_bild['0'] : '';
-
-                echo '<div class="textblock ' . $ausrichtung . '">';
-                  echo '<img src="' . $textblock_bild['url'] . '" />';
+                echo '<div class="textblock">';
+                  echo '<img src="' . $textblock_bild['sizes']['frontpage-thumbnail'] . '" />';
                   echo '<div class="textblock-content">';
                     echo '<h2>' . $textblock_headline . '</h2>';
                     echo '<p>' . $textblock_beschreibung . '</p>';
