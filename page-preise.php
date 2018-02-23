@@ -36,6 +36,17 @@
                 if( have_rows('behandlungen') ):
 
                   echo '<table class="table">';
+                    echo '<thead>';
+                      echo '<th>';
+                        echo 'Behandlung';
+                      echo '</th>';
+                      echo '<th>';
+                        echo 'Beschreibung';
+                      echo '</th>';
+                      echo '<th>';
+                        echo 'Preis';
+                      echo '</th>';
+                    echo '</thead>';
 
                   // loop through the rows of data
                     while ( have_rows('behandlungen') ) : the_row();
@@ -46,8 +57,8 @@
 
                     echo '<tr>';
                       echo '<td>' . $behandlung . '</td>';
-                      echo '<td>' . $beschreibung . '</td>';
-                      echo '<td>' . $preis . '</td>';
+                      echo '<td><small>' . $beschreibung . '</small></td>';
+                      echo '<td>' . $preis . ' &euro;</td>';
                     echo '</tr>';
 
                   endwhile;
@@ -64,10 +75,6 @@
         endif;
 
         ?>
-
-        <br class="clear">
-
-        <?php edit_post_link(); ?>
 
       </article>
       <!-- /article -->

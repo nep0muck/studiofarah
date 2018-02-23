@@ -72,7 +72,11 @@
                     echo '<h2>' . $textblock_headline . '</h2>';
                     echo '<p>' . $textblock_beschreibung . '</p>';
                   echo '</div>';
+
+                                  echo '<div class="divider"></div>';
                 echo '</div>';
+
+
 
                 // echo '<pre>';
                 //   var_dump($ausrichtung_bild);
@@ -89,10 +93,6 @@
         endif;
 
         ?>
-
-        <br class="clear">
-
-        <?php edit_post_link(); ?>
 
       </article>
       <!-- /article -->

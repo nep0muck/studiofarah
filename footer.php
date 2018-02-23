@@ -23,7 +23,7 @@
               $offnungszeiten = get_sub_field('offnungszeiten');
               $telefonnummer = get_sub_field('telefonnummer');
 
-              echo '<div>';
+              echo '<div class="contact-information">';
                 echo '<h2>' . $firma . '</h2>';
                 echo '<address>' .
                 	$strasse . ' ' .
