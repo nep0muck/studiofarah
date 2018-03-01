@@ -28,9 +28,13 @@
                 $behandlungskategorie_beschreibung = get_sub_field('behandlungskategorie_beschreibung');
                 $behandlungskategorie_bild = get_sub_field('behandlungskategorie_bild');
 
-                echo '<h2>' . $behandlungskategorie . '</h2>';
-                echo '<p>' . $behandlungskategorie_beschreibung . '</p>';
-                echo '<img src="' . $behandlungskategorie_bild['url'] . '" />';
+                echo '<div class="textblock leistungen">';
+                  echo '<div class="textblock-content">';
+                    echo '<h2>' . $behandlungskategorie . '</h2>';
+                    echo '<p>' . $behandlungskategorie_beschreibung . '</p>';
+                  echo '</div>';
+                  echo '<img src="' . $behandlungskategorie_bild['url'] . '" />';
+
 
                 // check if the nested repeater field has rows of data
                 if( have_rows('behandlungen') ):
@@ -65,6 +69,8 @@
 
                   echo '</table>';
                 endif;
+                echo '<div class="divider"></div>';
+                echo '</div>';
               endif;
           endwhile;
 

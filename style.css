@@ -618,10 +618,25 @@ p {
 		"divider divider";
 	}
 
+	.textblock.leistungen {
+		grid-template-areas:
+		"img content"
+		"table table"
+		"divider divider";
+	}
+
 	.textblock:nth-child(even) {
 		grid-template-columns: 1fr 250px;
 		grid-template-areas:
 		"content img"
+		"divider divider";
+	}
+
+	.textblock.leistungen:nth-child(even) {
+		grid-template-columns: 1fr 250px;
+		grid-template-areas:
+		"content img"
+		"table table"
 		"divider divider";
 	}
 
@@ -635,6 +650,10 @@ p {
 		max-width: 250px;
     border-radius: 50%;
     border: 2px solid #e5e5e5;
+	}
+
+	.textblock.leistungen table {
+		grid-area: table;
 	}
 
 	.divider {
