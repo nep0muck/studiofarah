@@ -4,8 +4,6 @@
     <!-- section -->
     <section>
 
-      <h1><?php the_title(); ?></h1>
-
     <?php if (have_posts()): while (have_posts()) : the_post(); ?>
 
       <!-- article -->
@@ -40,17 +38,17 @@
                 if( have_rows('behandlungen') ):
 
                   echo '<table class="table">';
-                    echo '<thead>';
-                      echo '<th>';
-                        echo 'Behandlung';
-                      echo '</th>';
-                      echo '<th>';
-                        echo 'Beschreibung';
-                      echo '</th>';
-                      echo '<th>';
-                        echo 'Preis';
-                      echo '</th>';
-                    echo '</thead>';
+                    // echo '<thead>';
+                    //   echo '<th>';
+                    //     echo 'Behandlung';
+                    //   echo '</th>';
+                    //   echo '<th>';
+                    //     echo 'Beschreibung';
+                    //   echo '</th>';
+                    //   echo '<th>';
+                    //     echo 'Preis';
+                    //   echo '</th>';
+                    // echo '</thead>';
 
                   // loop through the rows of data
                     while ( have_rows('behandlungen') ) : the_row();
