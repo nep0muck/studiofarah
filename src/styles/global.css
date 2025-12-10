@@ -1,0 +1,23 @@
+@import "tailwindcss";
+
+@theme {
+  /* 🌸 Primärfarben (Kosmetik & Wellness) */
+  --color-primary:        #C86BCF; /* Lavender Rose – Hauptfarbe */
+  --color-primary-soft:   #E8A2C8; /* Soft Pink – sanfter Akzent */
+  --color-primary-deep:   #5A2A5E; /* Deep Plum – für starken Kontrast */
+
+  /* 🌿 Neutrale & Wellness-Hintergründe */
+  --color-bg:             #F7F4F8; /* Warm White – Standard-Hintergrund */
+  --color-bg-soft:        #E8E0DB; /* Soft Sand – warme Flächen */
+  --color-surface:        #FFFFFF; /* Karten, Panels, Modale */
+
+  --color-mauve:          #A07C99; /* Smoky Mauve – ruhige Sektionen */
+
+  /* ✨ Akzente & Premium-Gefühl */
+  --color-accent-gold:    #D6A77A; /* Rose Gold – Buttons, Highlights */
+
+  /* 📝 Text & Linien */
+  --color-text:           #2B102F; /* Haupt-Text (dunkles Plum-inspiriert) */
+  --color-text-soft:      #5A2A5E; /* weichere Überschriften/Untertitel */
+  --color-border:         #E0D3E5; /* dezente Linien, Rahmen */
+}

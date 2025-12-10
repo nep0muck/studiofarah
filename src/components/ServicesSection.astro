@@ -1,0 +1,141 @@
+---
+interface Treatment {
+  title: string;
+  subtitle?: string;
+  description: string;
+  duration?: string;
+  price?: string;
+  highlight?: boolean;
+}
+
+interface Props {
+  id?: string;
+  heading?: string;
+  intro?: string;
+  treatments?: Treatment[];
+}
+
+const {
+  id = "leistungen",
+  heading = "Unsere Behandlungen",
+  intro = "Hier findest du eine Auswahl unserer beliebtesten Behandlungen. Jede Anwendung wird individuell auf deine Haut und deine Bedürfnisse abgestimmt.",
+  treatments = [
+    {
+      title: "Glow & Hydrate Gesichtsbehandlung",
+      subtitle: "Für strahlende, durchfeuchtete Haut",
+      description:
+        "Reinigende, peelende und intensiv feuchtigkeitsspendende Gesichtsbehandlung inkl. Maske und Abschlusspflege – ideal bei müder, fahler Haut.",
+      duration: "ca. 60 Minuten",
+      price: "ab 79 €",
+      highlight: true,
+    },
+    {
+      title: "Aroma-Relax Ganzkörpermassage",
+      subtitle: "Tiefenentspannung von Kopf bis Fuß",
+      description:
+        "Sanfte Massage mit warmen Aromaölen, die Verspannungen löst und Körper und Geist zur Ruhe bringt.",
+      duration: "ca. 60 Minuten",
+      price: "ab 69 €",
+    },
+    {
+      title: "Lash & Brow Perfect",
+      subtitle: "Wimpern & Augenbrauen in Form",
+      description:
+        "Färben und in Form bringen von Wimpern und Augenbrauen für einen offenen, ausdrucksstarken Blick – perfekt auch vor besonderen Anlässen.",
+      duration: "ca. 40 Minuten",
+      price: "ab 39 €",
+    },
+    {
+      title: "Rücken-Detox Behandlung",
+      subtitle: "Klärend & porenverfeinernd",
+      description:
+        "Reinigende Behandlung für den Rücken mit Peeling, Tiefenreinigung und beruhigender Maske – ideal bei Unreinheiten und Spannungsgefühl.",
+      duration: "ca. 45 Minuten",
+      price: "ab 59 €",
+    },
+    {
+      title: "Soft Anti-Aging Ritual",
+      subtitle: "Feine Linien sanft glätten",
+      description:
+        "Sanfte Anti-Aging-Behandlung mit ausgewählten Wirkstoffen, Massage und Maske zur Unterstützung der Hautelastizität.",
+      duration: "ca. 75 Minuten",
+      price: "ab 89 €",
+    },
+  ],
+} = Astro.props;
+---
+
+<section id={id} class="bg-bg py-16 lg:py-20">
+  <div class="mx-auto max-w-6xl px-6">
+    <!-- Heading -->
+    <div class="max-w-3xl space-y-4">
+      <p class="text-xs font-medium uppercase tracking-[0.2em] text-primary-deep/80">
+        Behandlungen
+      </p>
+      <h2 class="text-3xl font-semibold tracking-tight text-primary-deep sm:text-4xl">
+        {heading}
+      </h2>
+      <p class="text-sm leading-relaxed text-text-soft">
+        {intro}
+      </p>
+    </div>
+
+    <!-- Grid -->
+    <div class="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+      {treatments.map((treatment) => (
+        <article
+          class={[
+            "group flex flex-col rounded-3xl border bg-surface/95 p-5 shadow-sm transition hover:-translate-y-1 hover:shadow-xl hover:shadow-primary-soft/25",
+            treatment.highlight
+              ? "border-primary-soft/80 ring-1 ring-primary-soft/60"
+              : "border-border/70",
+          ]
+            .filter(Boolean)
+            .join(" ")}
+        >
+          <header class="space-y-1">
+            <h3 class="text-base font-semibold text-primary-deep">
+              {treatment.title}
+            </h3>
+            {treatment.subtitle && (
+              <p class="text-xs font-medium uppercase tracking-[0.16em] text-primary-soft/90">
+                {treatment.subtitle}
+              </p>
+            )}
+          </header>
+
+          <p class="mt-3 text-sm leading-relaxed text-text-soft">
+            {treatment.description}
+          </p>
+
+          <div class="mt-4 flex flex-wrap items-center justify-between gap-2 text-xs text-text-soft">
+            <div class="flex flex-col gap-1">
+              {treatment.duration && (
+                <span class="inline-flex rounded-full bg-bg-soft/80 px-3 py-1 text-[11px] text-text-soft">
+                  ⏱ {treatment.duration}
+                </span>
+              )}
+              {treatment.price && (
+                <span class="inline-flex rounded-full bg-primary-soft/15 px-3 py-1 text-[11px] font-semibold text-primary-deep">
+                  {treatment.price}
+                </span>
+              )}
+            </div>
+
+            <span class="inline-flex items-center gap-1 text-[11px] font-medium text-primary-deep/90">
+              Details &amp; Termin auf Anfrage
+              <span class="text-primary-soft/80 group-hover:translate-x-0.5 transition-transform">
+                →
+              </span>
+            </span>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <p class="mt-6 text-[11px] text-text-soft/80">
+      Die genannten Preise verstehen sich als Richtwerte. Genaue Preise und individuelle Kombinationen
+      besprechen wir gerne persönlich mit dir – am einfachsten per WhatsApp.
+    </p>
+  </div>
+</section>

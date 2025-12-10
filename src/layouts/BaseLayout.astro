@@ -1,0 +1,43 @@
+---
+import FloatingWhatsapp from "../components/FloatingWhatsapp.astro";
+import TopNav from "../components/TopNav.astro";
+
+interface Props {
+  title?: string;
+  whatsappNumber?: string;
+  whatsappMessage?: string;
+}
+
+const {
+  title = "Kosmetik & Wellnessstudio",
+  whatsappNumber = "491711234567",
+  whatsappMessage = "Hallo, ich interessiere mich für eine Behandlung und würde gerne einen Termin vereinbaren."
+} = Astro.props;
+
+import '../styles/global.css';
+
+---
+
+<html lang="de" class="bg-bg">
+  <head>
+    <meta charset="utf-8" />
+    <title>{title}</title>
+  </head>
+
+  <body class="bg-bg text-text antialiased">
+
+    <!-- 🔝 Navigation immer oben -->
+    <TopNav
+      whatsappNumber={whatsappNumber}
+      whatsappMessage={whatsappMessage}
+    />
+
+    <slot />
+
+    <!-- 💬 Floating WhatsApp Button -->
+    <FloatingWhatsapp
+      whatsappNumber={whatsappNumber}
+      whatsappMessage={whatsappMessage}
+    />
+  </body>
+</html>

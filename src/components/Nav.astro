@@ -1,0 +1,70 @@
+---
+import { Image } from 'astro:assets';
+import Logo from '../assets/logo.png';
+---
+
+
+<nav class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto py-6">
+    <div class="flex w-full justify-center items-center xl:w-auto xl:justify-between max-h-32">
+        <a href="/">
+            <Image src={Logo} alt="Studio Farah Logo" class="w-20" />
+        </a>
+    </div>
+
+    <div class="hidden xl:flex flex-row justify-center items-center">
+        <a class="py-6 px-6 rounded-md text-primary hover:bg-[theme('colors.primary-light')]" href="/">Startseite</a>
+        <a class="py-6 px-6 rounded-md hover:bg-[theme('colors.green-light')]" href="/#behandlungen">Behandlungen</a>
+        <a class="py-6 px-6 rounded-md hover:bg-[theme('colors.green-light')]" href="/#kontakt">Kontakt</a>
+        <a class="py-6 px-6 rounded-md hover:bg-[theme('colors.green-light')]" href="/#kontakt">Jetzt Termin vereinbaren!</a>
+    </div>
+
+    <!-- mobile menu -->
+    <a class="xl:hidden space-y-1 menu-button open-button cursor-pointer absolute top-10 right-10" href="#">
+        <span class="block h-0.5 w-8 bg-green-dark"></span>
+        <span class="block h-0.5 w-6 bg-green-dark"></span>
+        <span class="block h-0.5 w-4 bg-green-dark"></span>
+    </a>
+    <nav id="menu" class="mobile-menu menu-button fixed top-0 left-full flex flex-col justify-center items-center h-full w-full bg-[theme('colors.green-light')] z-10 p-6">
+        <a class="py-6 px-6 w-full text-center rounded-md hover:bg-green-medium hover:text-green-light" href="/">Startseite</a>
+        <a class="py-6 px-6 w-full text-center rounded-md hover:bg-green-medium hover:text-green-light" href="/#behandlungen">Behandlungen</a>
+        <a class="py-6 px-6 w-full text-center rounded-md hover:bg-green-medium hover:text-green-light" href="/#kontakt">Kontakt</a>
+        <a class="py-6 px-6 w-full text-center rounded-md hover:bg-green-medium hover:text-green-light" href="/#kontakt">Jetzt Termin vereinbaren!</a>
+    </nav>
+    <!-- mobile menu -->
+</nav>
+
+<style>
+    input[type="checkbox"] {
+        display: none;
+    }
+
+    :checked + label .navlisted {
+        display: flex;
+    }
+
+    :checked + label .close-button {
+        display: block;
+    }
+
+    :checked + label .open-button {
+        display: none;
+    }
+
+    #menu {
+        transition: left 300ms 300ms;
+    }
+    .fadeIn {
+        left:0;
+        transition-delay:0;
+    }
+</style>
+
+<script>
+  const btns = document.querySelectorAll('.menu-button');
+  const menu = document.querySelector('.mobile-menu');
+  btns.forEach(btn => {
+    btn.addEventListener('click', () => {
+        menu.classList.toggle('fadeIn');
+    });
+  })
+</script>

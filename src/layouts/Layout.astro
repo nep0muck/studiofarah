@@ -1,22 +1,70 @@
-<!doctype html>
-<html lang="en">
+---
+import HeadComponent from "../components/HeadComponent.astro";
+import Nav from "../components/Nav.astro"
+import Hero from "../components/Hero.astro";
+import Leistungen from "../components/Leistungen.astro";
+import Gallery from '../components/Gallery.astro';
+import About from '../components/About.astro';
+import Kontakt from "../components/Kontakt.astro";
+import Footer from "../components/Footer.astro"
+
+
+import FloatingWhatsapp from "../components/FloatingWhatsapp.astro";
+
+interface Props {
+  title?: string;
+  whatsappNumber?: string;
+  whatsappMessage?: string;
+}
+
+const {
+  title = "Kosmetik & Wellnessstudio",
+  whatsappNumber = "491711234567", // zentrale Nummer
+  whatsappMessage = "Hallo, ich interessiere mich für eine Behandlung und würde gerne einen Termin vereinbaren."
+} = Astro.props;
+
+import '../styles/global.css';
+---
+
+<!DOCTYPE html>
+<html lang="de" class="bg-bg">
 	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
+		<HeadComponent title={title} />
 	</head>
-	<body>
-		<slot />
+	<body class="bg-bg text-text antialiased">
+		<header class="max-w-screen-full mx-auto sticky top-0 border-b border-gray-300 z-20 transition-all shadow-md bg-bg">
+			<Nav />
+		</header>
+			<Hero />
+		<div class="max-w-screen-xl mx-auto mb-24 px-6 lg:px-0">
+			<slot />
+		</div>
+		    <FloatingWhatsapp
+      whatsappNumber={whatsappNumber}
+      whatsappMessage={whatsappMessage}
+    />
+		<div class="max-w-screen-xl mx-auto mb-24 px-6 lg:px-0">
+			<Leistungen />
+		</div>
+		<div class="max-w-screen-xl mx-auto mb-24 px-6 lg:px-0">
+			<Gallery />
+		</div>
+		<div class="max-w-screen-xl mx-auto mb-24 px-6 lg:px-0">
+			<About />
+		</div>
+		<Kontakt
+			id="kontakt"
+			whatsappNumber="491711234567"
+			whatsappMessage="Hallo, ich interessiere mich für eine Behandlung und würde gerne einen Termin vereinbaren."
+			studioName="Studio Farah"
+			street="Worpsweder Straße 85"
+			zipCity="28215 Bremen"
+			note="Du kannst gerne gleich deinen Namen, bevorzugte Tage/Uhrzeiten und eine Wunschbehandlung mitschicken."
+		/>
+		<footer class="">
+			<Footer />
+		</footer>
 	</body>
 </html>
-
 <style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
 </style>

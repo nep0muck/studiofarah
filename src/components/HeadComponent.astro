@@ -1,0 +1,55 @@
+---
+export interface Props {
+	title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!-- Grundlegende SEO -->
+<title>{title}</title>
+<meta name="description" content="Studio Farah – Ihr Studio für Kosmetik- und Wohlfühlbehandlungen in Bremen-Findorff. Jetzt Termin vereinbaren!">
+<meta name="keywords" content="Kosmetikstudio Bremen, Kosmetikbehandlungen Bremen">
+
+<!-- Mobile & Encoding -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Open Graph (Facebook, WhatsApp, LinkedIn) -->
+<meta property="og:title" content="Studio Farah – Kosmetik und Wohlfühlen in Bremen-Findorff">
+<meta property="og:description" content="Studio für Kosmetik- und Wohlfühlbehandlungen in Bremen-Findorff.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://studiofarah.de">
+<meta property="og:image" content="https://studiofarah.de/og-image.jpg">
+
+<!-- Twitter Cards -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Studio Farah – Kosmetik und Wohlfühlen">
+<meta name="twitter:description" content="Studio für Kosmetik- und Wohlfühlbehandlungen in Bremen-Findorff.">
+<meta name="twitter:image" content="https://studiofarah.de/og-image.jpg">
+
+<!-- Canonical -->
+<link rel="canonical" href="https://studiofarah.de">
+
+<link rel="icon" type="image/svg+xml" href="favicon.ico" />
+
+<!-- Structured Data: Local Business -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Physician",
+  "name": "Studio Farah - Kosmetik- und Wohlfühlbehandlungen",
+  "image": "https://studiofarah.de/og-image.jpg",
+  "@id": "",
+  "url": "https://studiofarah.de",
+  "telephone": "+49 421 172 707 01",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Worpsweder Straße 85",
+    "addressLocality": "Bremen",
+    "postalCode": "28215",
+    "addressCountry": "DE"
+  },
+  "openingHours": "Mo-Fr 09:00-18:00"
+}
+</script>

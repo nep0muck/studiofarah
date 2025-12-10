@@ -1,0 +1,121 @@
+---
+interface Props {
+  id?: string;
+  whatsappNumber?: string;   // im Format 491711234567
+  whatsappMessage?: string;
+  studioName?: string;
+  street?: string;
+  zipCity?: string;
+  note?: string;
+}
+
+const {
+  id = "kontakt",
+  whatsappNumber = "491711234567", // TODO: echte Nummer einsetzen
+  whatsappMessage = "Hallo, ich interessiere mich für eine Behandlung und würde gerne einen Termin vereinbaren.",
+  studioName = "Dein Kosmetik- & Wellnessstudio",
+  street = "Musterstraße 1",
+  zipCity = "12345 Musterstadt",
+  note = "Bitte gib kurz an, welche Behandlung dich interessiert und wann du ungefähr Zeit hast."
+} = Astro.props;
+
+const whatsappHref = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
+  whatsappMessage
+)}`;
+---
+
+<section id={id} class="bg-bg-soft/60 border-t border-border/60">
+  <div class="mx-auto max-w-5xl px-6 py-16 lg:py-20">
+    <div class="grid gap-10 lg:grid-cols-[1.2fr,1fr] lg:items-start">
+      <!-- Text & WhatsApp CTA -->
+      <div class="space-y-6">
+        <h2 class="text-3xl font-semibold tracking-tight text-primary-deep">
+          Kontakt &amp; Terminvereinbarung
+        </h2>
+
+        <p class="text-sm leading-relaxed text-text-soft max-w-xl">
+          Du hast Fragen zu unseren Behandlungen oder möchtest direkt einen Termin vereinbaren?
+          Am einfachsten erreichst du uns per WhatsApp. Schreib uns kurz dein Anliegen –
+          wir melden uns so schnell wie möglich bei dir.
+        </p>
+
+        <!-- WhatsApp Info-Card -->
+        <div class="space-y-4 rounded-3xl bg-surface/90 p-5 shadow-lg shadow-primary-soft/20 ring-1 ring-border/70">
+          <div class="flex flex-wrap items-center justify-between gap-3">
+            <div>
+              <p class="text-xs uppercase tracking-[0.18em] text-primary-deep/80">
+                Schnelle Kontaktaufnahme
+              </p>
+              <p class="text-base font-medium text-primary-deep">
+                Termin direkt über WhatsApp anfragen
+              </p>
+            </div>
+            <span class="rounded-full bg-primary-soft/20 px-3 py-1 text-[11px] font-medium text-primary-deep">
+              Antwort in der Regel innerhalb kurzer Zeit
+            </span>
+          </div>
+
+          <a
+            href={whatsappHref}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="mt-1 inline-flex w-full items-center justify-center gap-2 rounded-full bg-primary-deep px-6 py-3 text-sm font-medium text-bg shadow-md shadow-primary-deep/30 transition hover:-translate-y-0.5 hover:bg-primary"
+          >
+            <span>Jetzt WhatsApp-Nachricht senden</span>
+            <span class="text-[11px] uppercase tracking-[0.18em] text-bg/80">
+              unverbindlich &amp; bequem
+            </span>
+          </a>
+
+          <p class="text-xs leading-relaxed text-text-soft/85">
+            Vorgeschlagener Nachrichtentext:
+            <span class="block rounded-2xl bg-bg-soft/80 px-3 py-2 mt-1 text-[11px] text-text-soft">
+              „{whatsappMessage}“
+            </span>
+          </p>
+
+          <p class="text-[11px] text-text-soft/80">
+            {note}
+          </p>
+        </div>
+      </div>
+
+      <!-- Standort / Zeiten / Zusatzinfos -->
+      <div class="space-y-4">
+        <div class="rounded-3xl bg-surface p-5 shadow-md shadow-primary-soft/10 ring-1 ring-border/80">
+          <p class="text-xs uppercase tracking-[0.18em] text-primary-deep/80 mb-2">
+            Studio
+          </p>
+          <p class="text-base font-semibold text-primary-deep">
+            {studioName}
+          </p>
+          <p class="text-sm text-text-soft mt-1">
+            {street}<br />
+            {zipCity}
+          </p>
+        </div>
+
+        <div class="rounded-3xl bg-surface p-5 shadow-md shadow-primary-soft/10 ring-1 ring-border/80">
+          <p class="text-xs uppercase tracking-[0.18em] text-primary-deep/80 mb-2">
+            Öffnungszeiten
+          </p>
+          <p class="text-sm text-text-soft">
+            Termine nach Vereinbarung.<br />
+            Schreib uns einfach per WhatsApp mit deinen
+            Wunschzeiten – wir finden gemeinsam einen passenden Termin.
+          </p>
+        </div>
+
+        <div class="rounded-3xl bg-primary-deep/95 p-5 shadow-md shadow-primary-deep/40">
+          <p class="text-xs uppercase tracking-[0.18em] text-bg/70 mb-2">
+            Hinweis
+          </p>
+          <p class="text-sm text-bg/95">
+            Während Behandlungen ist das Handy lautlos –
+            wir antworten dir, sobald wir wieder Zeit haben.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

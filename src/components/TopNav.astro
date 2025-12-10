@@ -1,0 +1,54 @@
+---
+interface Props {
+  whatsappNumber?: string;   // im Format 491711234567
+  whatsappMessage?: string;
+}
+
+const {
+  whatsappNumber = "491711234567",
+  whatsappMessage = "Hallo, ich interessiere mich für eine Behandlung und würde gerne einen Termin vereinbaren."
+} = Astro.props;
+
+const whatsappHref = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
+  whatsappMessage
+)}`;
+---
+
+<nav class="sticky top-0 z-50 w-full bg-surface/90 backdrop-blur-sm shadow-sm shadow-primary-soft/10 border-b border-border/60">
+  <div class="mx-auto flex max-w-6xl items-center justify-between px-6 py-3">
+
+    <!-- Logo / Studio Name -->
+    <a href="#start" class="text-primary-deep font-semibold tracking-tight text-lg">
+      Wellness&nbsp;Studio
+    </a>
+
+    <!-- Desktop Navigation -->
+    <div class="hidden md:flex items-center gap-8 text-sm font-medium">
+      <a href="#start" class="text-text hover:text-primary-deep transition">Start</a>
+      <a href="#leistungen" class="text-text hover:text-primary-deep transition">Leistungen</a>
+      <a href="#kontakt" class="text-text hover:text-primary-deep transition">Kontakt</a>
+
+      <!-- WhatsApp CTA -->
+      <a
+        href={whatsappHref}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="rounded-full bg-primary-deep px-5 py-2 text-xs text-bg uppercase tracking-[0.14em] shadow-md shadow-primary-deep/25 transition hover:-translate-y-0.5 hover:bg-primary"
+      >
+        WhatsApp
+      </a>
+    </div>
+
+    <!-- Mobile Menu Icon (ohne JS, nur decorative) -->
+    <div class="md:hidden flex h-10 w-10 items-center justify-center rounded-xl bg-primary-soft/20 text-primary-deep shadow-inner shadow-primary-soft/40">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="h-5 w-5"
+        viewBox="0 0 24 24"
+        fill="currentColor"
+      >
+        <path d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
+    </div>
+  </div>
+</nav>

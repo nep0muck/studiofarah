@@ -1,0 +1,723 @@
+---
+import '../styles/global.css'
+
+const studioName = "studiofarah";
+const city = "Bremen";
+const ownerName = "Farah Vakili";
+---
+
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{studioName} · Kosmetikstudio in {city}</title>
+    <meta
+      name="description"
+      content={`Inhabergeführtes Kosmetikstudio in ${city}: individuelle Gesichtsbehandlungen, Wimpern & Brauen, entspannte Atmosphäre.`}
+    />
+
+    <!-- Google Fonts -->
+    <link
+      rel="preconnect"
+      href="https://fonts.googleapis.com"
+    />
+    <link
+      rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossorigin
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body class="bg-[#F5F5F5] text-[#2D2D2D] antialiased">
+    <!-- Globale Font-Definition -->
+    <style is:global>
+      :root {
+        --font-heading: "Playfair Display", system-ui, -apple-system,
+          BlinkMacSystemFont, "Segoe UI", serif;
+        --font-body: "Lato", system-ui, -apple-system, BlinkMacSystemFont,
+          "Segoe UI", sans-serif;
+      }
+      body {
+        font-family: var(--font-body);
+      }
+      .font-heading {
+        font-family: var(--font-heading);
+      }
+    </style>
+
+    <!-- Seite -->
+    <div class="min-h-screen flex flex-col">
+      <!-- Header -->
+      <header
+        class="sticky top-0 z-40 bg-white/90 backdrop-blur border-b border-[#E8DCC2]/60"
+      >
+        <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 flex items-center justify-between py-4">
+          <a href="#top" class="flex items-center gap-3">
+            <div
+              class="h-9 w-9 rounded-full bg-[#0F6F73] flex items-center justify-center text-white text-sm font-semibold"
+            >
+              KS
+            </div>
+            <div class="leading-tight">
+              <div class="font-heading text-lg text-[#0F6F73]">
+                {studioName}
+              </div>
+              <div class="text-xs text-[#767676]">
+                Kosmetik &amp; Hautpflege in {city}
+              </div>
+            </div>
+          </a>
+
+          <nav class="hidden md:flex items-center gap-8 text-sm">
+            <a href="#leistungen" class="hover:text-[#0F6F73] transition-colors"
+              >Leistungen</a
+            >
+            <a href="#ueber-mich" class="hover:text-[#0F6F73] transition-colors"
+              >Über mich</a
+            >
+            <a href="#preise" class="hover:text-[#0F6F73] transition-colors"
+              >Preise</a
+            >
+            <a href="#eindruecke" class="hover:text-[#0F6F73] transition-colors"
+              >Eindrücke</a
+            >
+            <a href="#kontakt" class="hover:text-[#0F6F73] transition-colors"
+              >Kontakt</a
+            >
+            <a
+              href="#kontakt"
+              class="inline-flex items-center rounded-full bg-[#0F6F73] px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-[#0c585b] transition-colors"
+            >
+              Termin buchen
+            </a>
+          </nav>
+        </div>
+      </header>
+
+      <main id="top" class="flex-1">
+        <!-- Hero -->
+        <section class="bg-white">
+          <div
+            class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-12 lg:py-20 grid lg:grid-cols-2 gap-10 lg:gap-16 items-center"
+          >
+            <div class="space-y-6">
+              <p class="text-xs font-semibold tracking-[0.2em] text-[#D9B6A3] uppercase">
+                Kosmetikstudio in {city}
+              </p>
+              <h1
+                class="font-heading text-3xl sm:text-4xl lg:text-5xl text-[#0F6F73] leading-tight"
+              >
+                Sanfte Schönheit – Zeit nur für dich.
+              </h1>
+              <p class="text-sm sm:text-base text-[#555555] max-w-xl">
+                In meinem inhabergeführten Kosmetikstudio erwartet dich eine
+                ruhige, persönliche Atmosphäre und hochwertige Behandlungen, die
+                genau auf deine Haut abgestimmt sind.
+              </p>
+
+              <ul class="space-y-2 text-sm text-[#555555]">
+                <li class="flex gap-2">
+                  <span class="mt-[6px] h-1.5 w-1.5 rounded-full bg-[#0F6F73]" />
+                  <span>Individuelle Hautanalyse &amp; Beratung</span>
+                </li>
+                <li class="flex gap-2">
+                  <span class="mt-[6px] h-1.5 w-1.5 rounded-full bg-[#0F6F73]" />
+                  <span>Hochwertige, sorgfältig ausgewählte Produkte</span>
+                </li>
+                <li class="flex gap-2">
+                  <span class="mt-[6px] h-1.5 w-1.5 rounded-full bg-[#0F6F73]" />
+                  <span>Entspannende Behandlungen in ruhiger Umgebung</span>
+                </li>
+              </ul>
+
+              <div class="flex flex-wrap gap-4 pt-2">
+                <a
+                  href="#kontakt"
+                  class="inline-flex items-center rounded-full bg-[#0F6F73] px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-[#0c585b] transition-colors"
+                >
+                  Jetzt Termin vereinbaren
+                </a>
+                <a
+                  href="#leistungen"
+                  class="inline-flex items-center text-sm font-semibold text-[#0F6F73]"
+                >
+                  Zu den Behandlungen →
+                </a>
+              </div>
+            </div>
+
+            <div class="relative">
+              <!-- Platzhalter-Bild – ersetze src durch dein eigenes -->
+              <div
+                class="overflow-hidden rounded-3xl bg-[#E8DCC2]/40 border border-[#E8DCC2]/70 shadow-sm"
+              >
+                <img
+                  src="/images/hero-behandlung.jpg"
+                  alt="Entspannte Kosmetikbehandlung"
+                  class="h-full w-full object-cover"
+                  loading="lazy"
+                />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- USPs -->
+        <section class="bg-[#F5F5F5]">
+          <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-10 lg:py-14">
+            <div class="grid gap-8 md:grid-cols-3">
+              <div class="space-y-3">
+                <div
+                  class="h-10 w-10 rounded-full bg-white flex items-center justify-center border border-[#E8DCC2]"
+                >
+                  <span class="text-xs text-[#0F6F73]">1</span>
+                </div>
+                <h3 class="font-heading text-lg text-[#0F6F73]">
+                  Persönliche Betreuung
+                </h3>
+                <p class="text-sm text-[#555555]">
+                  Du hast immer dieselbe Ansprechpartnerin – von der ersten
+                  Beratung bis zur Nachpflege.
+                </p>
+              </div>
+              <div class="space-y-3">
+                <div
+                  class="h-10 w-10 rounded-full bg-white flex items-center justify-center border border-[#E8DCC2]"
+                >
+                  <span class="text-xs text-[#0F6F73]">2</span>
+                </div>
+                <h3 class="font-heading text-lg text-[#0F6F73]">
+                  Sanfte, wirksame Produkte
+                </h3>
+                <p class="text-sm text-[#555555]">
+                  Ich arbeite nur mit ausgewählten Marken, die deine Haut
+                  pflegen statt sie zu strapazieren.
+                </p>
+              </div>
+              <div class="space-y-3">
+                <div
+                  class="h-10 w-10 rounded-full bg-white flex items-center justify-center border border-[#E8DCC2]"
+                >
+                  <span class="text-xs text-[#0F6F73]">3</span>
+                </div>
+                <h3 class="font-heading text-lg text-[#0F6F73]">
+                  Entspannung inklusive
+                </h3>
+                <p class="text-sm text-[#555555]">
+                  Jede Behandlung ist auch eine kleine Auszeit vom Alltag – in
+                  einem ruhigen, warmen Ambiente.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Leistungen -->
+        <section id="leistungen" class="bg-white">
+          <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
+            <div class="max-w-2xl mb-8">
+              <h2 class="font-heading text-2xl sm:text-3xl text-[#0F6F73] mb-3">
+                Behandlungen für deine Haut &amp; dein Wohlbefinden
+              </h2>
+              <p class="text-sm sm:text-base text-[#555555]">
+                Ich biete dir eine sorgfältig ausgewählte Auswahl an
+                Behandlungen, die sich auf Hautgesundheit, natürliche Schönheit
+                und wohltuende Entspannung konzentrieren.
+              </p>
+            </div>
+
+            <div class="grid gap-6 md:grid-cols-3">
+              <article
+                class="rounded-2xl border border-[#E8DCC2]/80 bg-[#FFFDF9] p-5 flex flex-col"
+              >
+                <h3 class="font-heading text-lg text-[#0F6F73] mb-2">
+                  Gesichtsbehandlungen
+                </h3>
+                <p class="text-sm text-[#555555] mb-3">
+                  Von der klassischen Ausreinigung bis zur intensiven
+                  Anti-Aging-Kur – immer abgestimmt auf deinen Hauttyp.
+                </p>
+                <span class="mt-auto text-xs font-semibold text-[#767676]">
+                  Ideal für: Tiefenreinigung, Glow, Anti-Aging
+                </span>
+              </article>
+
+              <article
+                class="rounded-2xl border border-[#E8DCC2]/80 bg-[#FFFDF9] p-5 flex flex-col"
+              >
+                <h3 class="font-heading text-lg text-[#0F6F73] mb-2">
+                  Wimpern &amp; Brauen
+                </h3>
+                <p class="text-sm text-[#555555] mb-3">
+                  Form, Farbe und Schwung für einen wachen, frischen Blick – mit
+                  Styling, Zupfen und Färben.
+                </p>
+                <span class="mt-auto text-xs font-semibold text-[#767676]">
+                  Ideal für: ausdrucksstarken Blick
+                </span>
+              </article>
+
+              <article
+                class="rounded-2xl border border-[#E8DCC2]/80 bg-[#FFFDF9] p-5 flex flex-col"
+              >
+                <h3 class="font-heading text-lg text-[#0F6F73] mb-2">
+                  Special-Treatments
+                </h3>
+                <p class="text-sm text-[#555555] mb-3">
+                  Extras wie Peelings, Masken oder kleine Verwöhn-Add-ons zu
+                  deiner Behandlung.
+                </p>
+                <span class="mt-auto text-xs font-semibold text-[#767676]">
+                  Ideal für: besondere Anlässe &amp; Verwöhnmomente
+                </span>
+              </article>
+            </div>
+
+            <div class="mt-6">
+              <a
+                href="#preise"
+                class="inline-flex items-center text-sm font-semibold text-[#0F6F73]"
+              >
+                Alle Behandlungen &amp; Preise entdecken →
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <!-- Über mich -->
+        <section id="ueber-mich" class="bg-[#F5F5F5]">
+          <div
+            class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-12 lg:py-16 grid lg:grid-cols-[1.1fr,1.4fr] gap-10 lg:gap-16 items-center"
+          >
+            <div>
+              <div
+                class="overflow-hidden rounded-3xl bg-[#E8DCC2]/40 border border-[#E8DCC2]/70 shadow-sm max-w-md"
+              >
+                <img
+                  src="/images/inhaberin.jpg"
+                  alt={`Portrait von ${ownerName}`}
+                  class="h-full w-full object-cover"
+                  loading="lazy"
+                />
+              </div>
+            </div>
+
+            <div>
+              <h2 class="font-heading text-2xl sm:text-3xl text-[#0F6F73] mb-3">
+                Über mich
+              </h2>
+              <p class="text-sm font-semibold text-[#D9B6A3] mb-4">
+                Schönheit beginnt damit, sich in der eigenen Haut wohlzufühlen.
+              </p>
+              <div class="space-y-4 text-sm sm:text-base text-[#555555]">
+                <p>
+                  Hallo, ich bin {ownerName}, staatlich geprüfte Kosmetikerin
+                  und Inhaberin von {studioName} in {city}. In meinem Studio
+                  kombiniere ich fachliche Kompetenz mit viel Ruhe und Herz,
+                  damit du dich von der ersten Minute an gut aufgehoben fühlst.
+                </p>
+                <p>
+                  Mir ist wichtig, dass jede Behandlung individuell ist.
+                  Gemeinsam schauen wir uns deine Hautbedürfnisse an und finden
+                  heraus, was dir wirklich guttut – ohne Hektik, ohne Druck.
+                </p>
+                <p>
+                  Für mich ist Kosmetik nicht nur Pflege, sondern auch eine
+                  kleine Pause vom Alltag. Genau diese Auszeit möchte ich dir
+                  schenken.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Preise / Beliebte Behandlungen -->
+        <section id="preise" class="bg-white">
+          <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
+            <div class="max-w-2xl mb-8">
+              <h2 class="font-heading text-2xl sm:text-3xl text-[#0F6F73] mb-3">
+                Beliebte Behandlungen &amp; Preise
+              </h2>
+              <p class="text-sm sm:text-base text-[#555555]">
+                Hier findest du eine kleine Auswahl meiner meistgebuchten
+                Behandlungen. Die vollständige Preisliste erhältst du auf
+                Anfrage oder direkt im Studio.
+              </p>
+            </div>
+
+            <div class="space-y-4">
+              <div
+                class="rounded-2xl border border-[#E8DCC2]/80 bg-[#FFFDF9] px-5 py-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2"
+              >
+                <div>
+                  <h3 class="font-heading text-lg text-[#0F6F73]">
+                    Klassische Gesichtsbehandlung
+                  </h3>
+                  <p class="text-sm text-[#555555]">
+                    Reinigung, Peeling, Ausreinigung, Maske und Abschlusspflege
+                    – ideal für einen frischen Teint.
+                  </p>
+                </div>
+                <div class="text-right text-sm">
+                  <div class="font-semibold text-[#0F6F73]">
+                    ca. 60 Min · ab 69 €
+                  </div>
+                </div>
+              </div>
+
+              <div
+                class="rounded-2xl border border-[#E8DCC2]/80 bg-[#FFFDF9] px-5 py-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2"
+              >
+                <div>
+                  <h3 class="font-heading text-lg text-[#0F6F73]">
+                    Intensive Feuchtigkeitsbehandlung
+                  </h3>
+                  <p class="text-sm text-[#555555]">
+                    Für durstige Haut, die nach Feuchtigkeit und Glow verlangt.
+                  </p>
+                </div>
+                <div class="text-right text-sm">
+                  <div class="font-semibold text-[#0F6F73]">
+                    ca. 75 Min · ab 89 €
+                  </div>
+                </div>
+              </div>
+
+              <div
+                class="rounded-2xl border border-[#E8DCC2]/80 bg-[#FFFDF9] px-5 py-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2"
+              >
+                <div>
+                  <h3 class="font-heading text-lg text-[#0F6F73]">
+                    Wimpern- &amp; Augenbrauenstyling
+                  </h3>
+                  <p class="text-sm text-[#555555]">
+                    Zupfen, Formen und Färben für einen ausdrucksstarken Blick.
+                  </p>
+                </div>
+                <div class="text-right text-sm">
+                  <div class="font-semibold text-[#0F6F73]">
+                    ca. 30–45 Min · ab 29 €
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <p class="mt-4 text-xs text-[#767676]">
+              Hinweis: Preise können je nach Hautzustand und gewünschtem
+              Umfang variieren.
+            </p>
+          </div>
+        </section>
+
+        <!-- Eindrücke / Galerie -->
+        <section id="eindruecke" class="bg-[#F5F5F5]">
+          <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
+            <div class="max-w-2xl mb-8">
+              <h2 class="font-heading text-2xl sm:text-3xl text-[#0F6F73] mb-3">
+                Einblicke in mein Studio
+              </h2>
+              <p class="text-sm sm:text-base text-[#555555]">
+                Ein ruhiges, klares Ambiente mit warmen Akzenten – damit du dich
+                rundum wohlfühlst.
+              </p>
+            </div>
+
+            <div class="grid gap-4 md:grid-cols-3">
+              <figure
+                class="overflow-hidden rounded-2xl bg-[#E8DCC2]/40 border border-[#E8DCC2]/70"
+              >
+                <img
+                  src="/images/studio-behandlungsraum.jpg"
+                  alt="Behandlungsraum des Studios"
+                  class="h-56 w-full object-cover"
+                  loading="lazy"
+                />
+                <figcaption
+                  class="px-4 py-3 text-xs text-[#555555] bg-white/80"
+                >
+                  Behandlungsraum
+                </figcaption>
+              </figure>
+
+              <figure
+                class="overflow-hidden rounded-2xl bg-[#E8DCC2]/40 border border-[#E8DCC2]/70"
+              >
+                <img
+                  src="/images/studio-details.jpg"
+                  alt="Dekodetails im Studio"
+                  class="h-56 w-full object-cover"
+                  loading="lazy"
+                />
+                <figcaption
+                  class="px-4 py-3 text-xs text-[#555555] bg-white/80"
+                >
+                  Sanfte Lichtstimmung
+                </figcaption>
+              </figure>
+
+              <figure
+                class="overflow-hidden rounded-2xl bg-[#E8DCC2]/40 border border-[#E8DCC2]/70"
+              >
+                <img
+                  src="/images/studio-produkte.jpg"
+                  alt="Ausgewählte Pflegeprodukte"
+                  class="h-56 w-full object-cover"
+                  loading="lazy"
+                />
+                <figcaption
+                  class="px-4 py-3 text-xs text-[#555555] bg-white/80"
+                >
+                  Für dich vorbereitet
+                </figcaption>
+              </figure>
+            </div>
+          </div>
+        </section>
+
+        <!-- Testimonials -->
+        <section class="bg-white">
+          <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
+            <div class="max-w-2xl mb-8">
+              <h2 class="font-heading text-2xl sm:text-3xl text-[#0F6F73] mb-3">
+                Was meine Kundinnen sagen
+              </h2>
+            </div>
+
+            <div class="grid gap-6 md:grid-cols-3">
+              <div
+                class="rounded-2xl border border-[#E8DCC2]/80 bg-[#FFFDF9] p-5 flex flex-col justify-between"
+              >
+                <p class="text-sm text-[#555555] mb-4">
+                  „Ich habe mich von Anfang an so wohl gefühlt. Alles ist
+                  ruhig, sauber und sehr liebevoll gestaltet – meine Haut war
+                  noch nie so entspannt.“
+                </p>
+                <p class="text-xs font-semibold text-[#767676]">Laura, 32</p>
+              </div>
+
+              <div
+                class="rounded-2xl border border-[#E8DCC2]/80 bg-[#FFFDF9] p-5 flex flex-col justify-between"
+              >
+                <p class="text-sm text-[#555555] mb-4">
+                  „Man merkt, dass hier wirklich zugehört wird. Die Behandlung
+                  wurde perfekt auf meine Haut angepasst.“
+                </p>
+                <p class="text-xs font-semibold text-[#767676]">Miriam, 41</p>
+              </div>
+
+              <div
+                class="rounded-2xl border border-[#E8DCC2]/80 bg-[#FFFDF9] p-5 flex flex-col justify-between"
+              >
+                <p class="text-sm text-[#555555] mb-4">
+                  „Kein Massenstudio, sondern echte persönliche Zeit. Ich komme
+                  regelmäßig zur Ausreinigung und kann es nur empfehlen.“
+                </p>
+                <p class="text-xs font-semibold text-[#767676]">Sophie, 28</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- FAQ -->
+        <section class="bg-[#F5F5F5]">
+          <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
+            <div class="max-w-2xl mb-8">
+              <h2 class="font-heading text-2xl sm:text-3xl text-[#0F6F73] mb-3">
+                Häufige Fragen
+              </h2>
+            </div>
+
+            <div class="space-y-4">
+              <details
+                class="group rounded-2xl border border-[#E8DCC2]/80 bg-white px-5 py-4"
+              >
+                <summary
+                  class="flex cursor-pointer items-center justify-between text-sm font-semibold text-[#0F6F73]"
+                >
+                  <span>Wie kann ich einen Termin buchen?</span>
+                  <span
+                    class="text-xs text-[#767676] group-open:rotate-90 transition-transform"
+                    >▶</span
+                  >
+                </summary>
+                <div class="mt-3 text-sm text-[#555555]">
+                  Du kannst mich telefonisch, per WhatsApp oder über das
+                  Kontaktformular auf dieser Seite erreichen. Ich melde mich
+                  schnellstmöglich mit einem Terminvorschlag.
+                </div>
+              </details>
+
+              <details
+                class="group rounded-2xl border border-[#E8DCC2]/80 bg-white px-5 py-4"
+              >
+                <summary
+                  class="flex cursor-pointer items-center justify-between text-sm font-semibold text-[#0F6F73]"
+                >
+                  <span>Was soll ich zur Behandlung mitbringen?</span>
+                  <span
+                    class="text-xs text-[#767676] group-open:rotate-90 transition-transform"
+                    >▶</span
+                  >
+                </summary>
+                <div class="mt-3 text-sm text-[#555555]">
+                  Eigentlich nur dich selbst. Wenn du bestimmte Produkte
+                  verwendest, kannst du gerne Fotos davon mitbringen, damit ich
+                  deine Routine besser einschätzen kann.
+                </div>
+              </details>
+
+              <details
+                class="group rounded-2xl border border-[#E8DCC2]/80 bg-white px-5 py-4"
+              >
+                <summary
+                  class="flex cursor-pointer items-center justify-between text-sm font-semibold text-[#0F6F73]"
+                >
+                  <span>Was passiert, wenn ich einen Termin absagen muss?</span>
+                  <span
+                    class="text-xs text-[#767676] group-open:rotate-90 transition-transform"
+                    >▶</span
+                  >
+                </summary>
+                <div class="mt-3 text-sm text-[#555555]">
+                  Bitte gib mir, wenn möglich, mindestens 24 Stunden vorher
+                  Bescheid, damit ich den Termin neu vergeben kann.
+                </div>
+              </details>
+            </div>
+          </div>
+        </section>
+
+        <!-- Kontakt -->
+        <section id="kontakt" class="bg-white">
+          <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
+            <div class="grid gap-10 lg:grid-cols-2">
+              <div>
+                <h2 class="font-heading text-2xl sm:text-3xl text-[#0F6F73] mb-3">
+                  Dein Termin bei {studioName}
+                </h2>
+                <p class="text-sm sm:text-base text-[#555555] mb-6">
+                  Du hast eine Frage zu einer Behandlung oder möchtest direkt
+                  einen Termin vereinbaren? Ich freue mich auf deine Nachricht.
+                </p>
+
+                <div class="space-y-4 text-sm text-[#555555]">
+                  <div>
+                    <div class="font-semibold text-[#0F6F73]">Adresse</div>
+                    <p>
+                      [Straße Hausnummer]
+                      <br />
+                      [PLZ] {city}
+                    </p>
+                  </div>
+
+                  <div>
+                    <div class="font-semibold text-[#0F6F73]">Kontakt</div>
+                    <p>
+                      Telefon: <span class="font-semibold">[Telefonnummer]</span
+                      ><br />
+                      WhatsApp: <span class="font-semibold">[Nummer]</span
+                      ><br />
+                      E-Mail: <span class="font-semibold">[E-Mail-Adresse]</span>
+                    </p>
+                  </div>
+
+                  <div>
+                    <div class="font-semibold text-[#0F6F73]">Öffnungszeiten</div>
+                    <p>Termine nach Vereinbarung – flexibel auch abends.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div
+                class="rounded-3xl border border-[#E8DCC2]/80 bg-[#FFFDF9] p-6 sm:p-8"
+              >
+                <h3 class="font-heading text-xl text-[#0F6F73] mb-4">
+                  Termin anfragen
+                </h3>
+
+                <!-- Platzhalter-Formular – kannst du mit deinem Backend verbinden -->
+                <form class="space-y-4">
+                  <div class="space-y-1.5">
+                    <label class="text-xs font-semibold text-[#767676]">
+                      Name
+                    </label>
+                    <input
+                      type="text"
+                      class="w-full rounded-xl border border-[#E8DCC2] bg-white px-3 py-2 text-sm outline-none focus:border-[#0F6F73] focus:ring-1 focus:ring-[#0F6F73]"
+                      placeholder="Dein Name"
+                    />
+                  </div>
+
+                  <div class="space-y-1.5">
+                    <label class="text-xs font-semibold text-[#767676]">
+                      E-Mail oder Telefonnummer
+                    </label>
+                    <input
+                      type="text"
+                      class="w-full rounded-xl border border-[#E8DCC2] bg-white px-3 py-2 text-sm outline-none focus:border-[#0F6F73] focus:ring-1 focus:ring-[#0F6F73]"
+                      placeholder="Wie kann ich dich erreichen?"
+                    />
+                  </div>
+
+                  <div class="space-y-1.5">
+                    <label class="text-xs font-semibold text-[#767676]">
+                      Wunschbehandlung / Anliegen
+                    </label>
+                    <textarea
+                      class="w-full rounded-xl border border-[#E8DCC2] bg-white px-3 py-2 text-sm outline-none focus:border-[#0F6F73] focus:ring-1 focus:ring-[#0F6F73] min-h-[110px]"
+                      placeholder="Wobei kann ich dir helfen?"
+                    ></textarea>
+                  </div>
+
+                  <div class="space-y-1.5">
+                    <label class="text-xs font-semibold text-[#767676]">
+                      Wunschzeitraum (optional)
+                    </label>
+                    <input
+                      type="text"
+                      class="w-full rounded-xl border border-[#E8DCC2] bg-white px-3 py-2 text-sm outline-none focus:border-[#0F6F73] focus:ring-1 focus:ring-[#0F6F73]"
+                      placeholder="z. B. dienstags ab 16 Uhr"
+                    />
+                  </div>
+
+                  <button
+                    type="submit"
+                    class="mt-2 inline-flex w-full items-center justify-center rounded-full bg-[#0F6F73] px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-[#0c585b] transition-colors"
+                  >
+                    Nachricht senden
+                  </button>
+
+                  <p class="text-[11px] text-[#767676] pt-1">
+                    Mit dem Absenden deiner Anfrage erklärst du dich damit
+                    einverstanden, dass ich deine Angaben zur Beantwortung
+                    verwende.
+                  </p>
+                </form>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <!-- Footer -->
+      <footer class="bg-[#0F6F73] text-white text-xs">
+        <div
+          class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-4 flex flex-col sm:flex-row items-center justify-between gap-2"
+        >
+          <div>
+            {studioName} · Kosmetikstudio in {city}
+          </div>
+          <div class="flex gap-4">
+            <a href="#" class="hover:underline">Impressum</a>
+            <a href="#" class="hover:underline">Datenschutz</a>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>
