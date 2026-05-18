@@ -1,0 +1,34 @@
+---
+import { treatments } from '@data/site';
+---
+
+<section id="preise" class="scroll-mt-24 border-t">
+  <div class="mx-auto max-w-6xl px-4 py-16">
+    <div class="max-w-2xl">
+      <p class="mb-2 text-sm uppercase tracking-wide">Preise</p>
+      <h2 class="text-3xl font-semibold">Preisliste</h2>
+      <p class="mt-4">Eine einfache Übersicht auf Basis der Behandlungen.</p>
+    </div>
+
+    <div class="mt-8 overflow-x-auto rounded border">
+      <table class="w-full text-left text-sm">
+        <thead class="border-b">
+          <tr>
+            <th class="px-4 py-3 font-semibold">Behandlung</th>
+            <th class="px-4 py-3 font-semibold">Dauer</th>
+            <th class="px-4 py-3 font-semibold">Preis</th>
+          </tr>
+        </thead>
+        <tbody>
+          {treatments.map((treatment) => (
+            <tr class="border-b last:border-b-0">
+              <td class="px-4 py-3">{treatment.title}</td>
+              <td class="px-4 py-3">{treatment.duration}</td>
+              <td class="px-4 py-3">{treatment.price}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>

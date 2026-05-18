@@ -1,0 +1,36 @@
+---
+import { navItems, site } from '@data/site';
+---
+
+<header class="sticky top-0 z-50 border-b bg-white/90 backdrop-blur">
+  <nav class="mx-auto flex max-w-6xl items-center justify-between px-4 py-4" aria-label="Hauptnavigation">
+    <a href="/" class="font-semibold" aria-label={`${site.name} Startseite`}>
+      {site.name}
+    </a>
+
+    <div class="hidden items-center gap-6 md:flex">
+      {navItems.map((item) => (
+        <a href={item.href} class="text-sm hover:underline">
+          {item.label}
+        </a>
+      ))}
+      <a href="/impressum/" class="text-sm hover:underline">Impressum</a>
+      <a href="/datenschutz/" class="text-sm hover:underline">Datenschutz</a>
+    </div>
+
+    <details class="relative md:hidden">
+      <summary class="cursor-pointer list-none rounded border px-3 py-2 text-sm">
+        Menü
+      </summary>
+      <div class="absolute right-0 mt-2 flex w-56 flex-col gap-3 rounded border bg-white p-4 shadow">
+        {navItems.map((item) => (
+          <a href={item.href} class="text-sm hover:underline">
+            {item.label}
+          </a>
+        ))}
+        <a href="/impressum/" class="text-sm hover:underline">Impressum</a>
+        <a href="/datenschutz/" class="text-sm hover:underline">Datenschutz</a>
+      </div>
+    </details>
+  </nav>
+</header>

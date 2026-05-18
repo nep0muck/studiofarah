@@ -1,43 +1,35 @@
 ---
-import FloatingWhatsapp from "../components/FloatingWhatsapp.astro";
-import TopNav from "../components/TopNav.astro";
+import '@styles/global.css';
+import Navigation from '@components/layout/Navigation.astro';
+import Footer from '@components/layout/Footer.astro';
+import { site } from '@data/site';
 
 interface Props {
   title?: string;
-  whatsappNumber?: string;
-  whatsappMessage?: string;
+  description?: string;
 }
 
 const {
-  title = "Kosmetik & Wellnessstudio",
-  whatsappNumber = "491711234567",
-  whatsappMessage = "Hallo, ich interessiere mich für eine Behandlung und würde gerne einen Termin vereinbaren."
+  title = site.name,
+  description = site.description,
 } = Astro.props;
 
-import '../styles/global.css';
-
+const pageTitle = title === site.name ? site.name : `${title} | ${site.name}`;
 ---
 
-<html lang="de" class="bg-bg">
+<!doctype html>
+<html lang="de">
   <head>
-    <meta charset="utf-8" />
-    <title>{title}</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <title>{pageTitle}</title>
   </head>
-
-  <body class="bg-bg text-text antialiased">
-
-    <!-- 🔝 Navigation immer oben -->
-    <TopNav
-      whatsappNumber={whatsappNumber}
-      whatsappMessage={whatsappMessage}
-    />
-
-    <slot />
-
-    <!-- 💬 Floating WhatsApp Button -->
-    <FloatingWhatsapp
-      whatsappNumber={whatsappNumber}
-      whatsappMessage={whatsappMessage}
-    />
+  <body class="bg-white text-neutral-900 antialiased">
+    <Navigation />
+    <main>
+      <slot />
+    </main>
+    <Footer />
   </body>
 </html>

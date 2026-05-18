@@ -1,27 +1,15 @@
 ---
-import BaseLayout from "../layouts/BaseLayout.astro";
-import Hero from "../components/Hero.astro";
-import ServicesSection from "../components/ServicesSection.astro";
-import ContactSection from "../components/ContactSection.astro";
+import BaseLayout from '@layouts/BaseLayout.astro';
+import Hero from '@components/sections/Hero.astro';
+import Treatments from '@components/sections/Treatments.astro';
+import PriceList from '@components/sections/PriceList.astro';
+import Contact from '@components/sections/Contact.astro';
+import { site } from '@data/site';
 ---
 
-<BaseLayout
-  title="Kosmetik & Wellnessstudio"
-  whatsappNumber="491711234567"
-  whatsappMessage="Hallo, ich interessiere mich für eine Behandlung und würde gerne einen Termin vereinbaren."
->
-  <Hero
-    whatsappNumber="491711234567"
-    whatsappMessage="Hallo, ich interessiere mich für eine Behandlung und würde gerne einen Termin vereinbaren."
-  />
-
-  <ServicesSection />
-
-  <ContactSection
-    whatsappNumber="491711234567"
-    whatsappMessage="Hallo, ich interessiere mich für eine Behandlung und würde gerne einen Termin vereinbaren."
-    studioName="Studio Beispielname"
-    street="Schöne Straße 12"
-    zipCity="12345 Musterstadt"
-  />
+<BaseLayout title={site.name} description={site.description}>
+  <Hero />
+  <Treatments />
+  <PriceList />
+  <Contact />
 </BaseLayout>

@@ -1,0 +1,41 @@
+---
+import { site } from '@data/site';
+const whatsappUrl = `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(site.whatsappMessage)}`;
+---
+
+<section id="kontakt" class="scroll-mt-24 border-t">
+  <div class="mx-auto grid max-w-6xl gap-8 px-4 py-16 md:grid-cols-2">
+    <div>
+      <p class="mb-2 text-sm uppercase tracking-wide">Kontakt</p>
+      <h2 class="text-3xl font-semibold">Termin anfragen</h2>
+      <p class="mt-4">
+        Für eine schnelle Terminabstimmung kannst du direkt per WhatsApp Kontakt aufnehmen.
+      </p>
+
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a href={whatsappUrl} class="rounded border px-5 py-3 text-sm font-medium" target="_blank" rel="noreferrer">
+          WhatsApp öffnen
+        </a>
+        <a href={`mailto:${site.email}`} class="rounded border px-5 py-3 text-sm font-medium">
+          E-Mail schreiben
+        </a>
+      </div>
+    </div>
+
+    <div class="rounded border p-6">
+      <h3 class="text-xl font-semibold">Kontaktdaten</h3>
+      <address class="mt-4 space-y-2 not-italic">
+        {site.address.map((line) => <p>{line}</p>)}
+        <p><a href={`tel:${site.phoneDisplay.replaceAll(' ', '')}`} class="hover:underline">{site.phoneDisplay}</a></p>
+        <p><a href={`mailto:${site.email}`} class="hover:underline">{site.email}</a></p>
+      </address>
+
+      <div class="mt-6">
+        <h4 class="font-semibold">Öffnungszeiten</h4>
+        <div class="mt-2 space-y-1 text-sm">
+          {site.openingHours.map((line) => <p>{line}</p>)}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

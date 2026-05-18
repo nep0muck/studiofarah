@@ -1,46 +1,53 @@
-# Astro Starter Kit: Basics
+# Studio Farah – Astro/Tailwind Grundgerüst
 
-```sh
-npm create astro@latest -- --template basics
+Statische Singlepage-Webseite mit Astro und Tailwind CSS.
+
+## Setup
+
+```bash
+npm install
+npm run dev
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Struktur
 
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src
-│   ├── assets
-│   │   └── astro.svg
-│   ├── components
-│   │   └── Welcome.astro
-│   ├── layouts
-│   │   └── Layout.astro
-│   └── pages
-│       └── index.astro
-└── package.json
+```txt
+src/
+  components/
+    layout/
+      Navigation.astro
+      Footer.astro
+    sections/
+      Hero.astro
+      Treatments.astro
+      PriceList.astro
+      Contact.astro
+  data/
+    site.ts
+  layouts/
+    BaseLayout.astro
+  pages/
+    index.astro
+    impressum.astro
+    datenschutz.astro
+  styles/
+    global.css
+public/
+  favicon.svg
+  robots.txt
 ```
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+## Inhalte anpassen
 
-## 🧞 Commands
+Die zentralen Platzhalter für Name, Kontaktdaten, Navigation, WhatsApp und Behandlungen liegen in:
 
-All commands are run from the root of the project, from a terminal:
+```txt
+src/data/site.ts
+```
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+## Build
 
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+```bash
+npm run build
+npm run preview
+```

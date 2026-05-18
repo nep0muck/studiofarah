@@ -1,0 +1,30 @@
+---
+import { site } from '@data/site';
+const whatsappUrl = `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(site.whatsappMessage)}`;
+---
+
+<section id="start" class="scroll-mt-24">
+  <div class="mx-auto grid max-w-6xl gap-8 px-4 py-20 md:grid-cols-2 md:items-center">
+    <div>
+      <p class="mb-3 text-sm uppercase tracking-wide">Kosmetik · Pflege · Wohlbefinden</p>
+      <h1 class="text-4xl font-semibold tracking-tight md:text-5xl">
+        Willkommen bei {site.name}
+      </h1>
+      <p class="mt-6 max-w-xl text-lg">
+        Ein ruhiger Ort für individuelle Behandlungen, persönliche Beratung und gepflegte Wohlfühlmomente.
+      </p>
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a href={whatsappUrl} class="rounded border px-5 py-3 text-sm font-medium">
+          Termin per WhatsApp anfragen
+        </a>
+        <a href="#behandlungen" class="rounded border px-5 py-3 text-sm font-medium">
+          Behandlungen ansehen
+        </a>
+      </div>
+    </div>
+
+    <div class="min-h-80 rounded border bg-neutral-100 p-6">
+      <p class="text-sm">Bildplatzhalter / Hero-Visual</p>
+    </div>
+  </div>
+</section>
