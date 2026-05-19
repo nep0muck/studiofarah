@@ -1,30 +1,58 @@
 ---
-import { site } from '@data/site';
+import { site, hero } from '@data/site';
+import Button from "../ui/Button.astro";
+const heroImage = "/images/hero/studio-farah-hero.png";
 const whatsappUrl = `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(site.whatsappMessage)}`;
 ---
 
-<section id="start" class="scroll-mt-24">
-  <div class="mx-auto grid max-w-6xl gap-8 px-4 py-20 md:grid-cols-2 md:items-center">
-    <div>
-      <p class="mb-3 text-sm uppercase tracking-wide">Kosmetik · Pflege · Wohlbefinden</p>
-      <h1 class="text-4xl font-semibold tracking-tight md:text-5xl">
-        Willkommen bei {site.name}
-      </h1>
-      <p class="mt-6 max-w-xl text-lg">
-        Ein ruhiger Ort für individuelle Behandlungen, persönliche Beratung und gepflegte Wohlfühlmomente.
-      </p>
-      <div class="mt-8 flex flex-wrap gap-3">
-        <a href={whatsappUrl} class="rounded border px-5 py-3 text-sm font-medium">
-          Termin per WhatsApp anfragen
-        </a>
-        <a href="#behandlungen" class="rounded border px-5 py-3 text-sm font-medium">
-          Behandlungen ansehen
-        </a>
-      </div>
-    </div>
+<section id="start" class="section relative overflow-hidden">
+  <div class="container">
+    <div class="relative min-h-[420px] overflow-hidden rounded-3xl border card-soft bg-gray-100 md:min-h-[520px]">
+      <img
+        src={heroImage}
+        alt="Entspannende Kosmetikbehandlung im Studio Farah"
+        width="494"
+        height="270"
+        class="absolute inset-0 h-full w-full object-cover"
+        loading="eager"
+        decoding="async"
+        fetchpriority="high"
+      />
 
-    <div class="min-h-80 rounded border bg-neutral-100 p-6">
-      <p class="text-sm">Bildplatzhalter / Hero-Visual</p>
+      <div class="absolute inset-0 bg-gradient-to-r from-white/95 via-white/75 to-white/10"></div>
+
+      <div class="relative z-10 flex min-h-[420px] items-center px-6 py-12 md:min-h-[520px] md:px-12 lg:px-16">
+        <div class="max-w-xl">
+          <p class="text-sm font-medium uppercase tracking-wide text-pink-500">
+            Kosmetikstudio in Findorff
+          </p>
+
+          <h1 class="mt-4 text-4xl font-semibold leading-tight text-gray-900 md:text-5xl lg:text-6xl">
+            Ihre kleine Auszeit vom Alltag
+          </h1>
+
+          <p class="mt-6 max-w-lg text-base leading-relaxed text-gray-700 md:text-lg">
+            Willkommen im Studio Farah. Genießen Sie wohltuende Kosmetik,
+            pflegende Behandlungen und persönliche Betreuung in ruhiger,
+            angenehmer Atmosphäre.
+          </p>
+
+          <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+            <Button
+              href="#kontakt"
+            >
+              Termin anfragen
+            </Button>
+
+            <Button
+              href="#preise"
+              variant="secondary"
+            >
+              Preise ansehen
+            </Button>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>

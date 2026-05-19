@@ -1,0 +1,21 @@
+---
+const {
+  href = "#",
+  variant = "primary",
+  class: className = "",
+} = Astro.props;
+
+const baseClasses =
+  "inline-flex items-center justify-center rounded-full px-5 py-3 text-sm font-medium transition";
+
+const variants = {
+  primary: "btn-primary",
+  secondary: "btn-secondary",
+};
+
+const classes = `${baseClasses} ${variants[variant]} ${className}`;
+---
+
+<a href={href} class={classes}>
+  <slot />
+</a>

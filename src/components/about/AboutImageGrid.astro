@@ -1,0 +1,58 @@
+---
+type ImageItem = {
+  src?: string;
+  label: string;
+  alt: string;
+};
+
+const { images } = Astro.props as {
+  images: readonly ImageItem[];
+};
+---
+
+<div class="grid gap-4 sm:grid-cols-3 lg:grid-cols-2">
+  {images.map((image, index) => (
+    <div
+      class:list={[
+        "group overflow-hidden rounded-3xl border border-gray-200 bg-white shadow-sm",
+        index === 0 ? "sm:col-span-3 lg:col-span-2" : "",
+      ]}
+    >
+      {image.src ? (
+        <img
+          src={image.src}
+          alt={image.alt}
+          class:list={[
+            "w-full object-cover transition duration-300 group-hover:scale-105",
+            index === 0 ? "h-72 md:h-80" : "h-44",
+          ]}
+          loading={index === 0 ? "eager" : "lazy"}
+          decoding="async"
+        />
+      ) : (
+        <div
+          class:list={[
+            "flex w-full items-center justify-center bg-gradient-to-br from-pink-50 via-yellow-50 to-gray-100 p-6 text-center",
+            index === 0 ? "h-72 md:h-80" : "h-44",
+          ]}
+          role="img"
+          aria-label={image.alt}
+        >
+          <div>
+            <div class="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-white text-pink-500 shadow-sm">
+              <span class="text-xl" aria-hidden="true">✦</span>
+            </div>
+
+            <p class="text-sm font-semibold text-gray-900">
+              {image.label}
+            </p>
+
+            <p class="mt-2 text-xs leading-relaxed text-gray-600">
+              {image.alt}
+            </p>
+          </div>
+        </div>
+      )}
+    </div>
+  ))}
+</div>
