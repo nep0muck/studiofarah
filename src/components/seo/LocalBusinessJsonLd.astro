@@ -1,0 +1,79 @@
+---
+import { localBusiness, seo, treatments } from "../../data/site";
+
+const siteUrl = seo.siteUrl.replace(/\/$/, "");
+
+const absoluteUrl = (path: string) => {
+  return path.startsWith("http")
+    ? path
+    : new URL(path, `${siteUrl}/`).toString();
+};
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": localBusiness.type,
+  "@id": `${siteUrl}/#localbusiness`,
+
+  name: localBusiness.name,
+  description: localBusiness.description,
+  url: localBusiness.url,
+  image: absoluteUrl(localBusiness.image),
+  logo: absoluteUrl(localBusiness.logo),
+  telephone: localBusiness.telephone,
+  email: localBusiness.email,
+  priceRange: localBusiness.priceRange,
+
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: localBusiness.address.streetAddress,
+    postalCode: localBusiness.address.postalCode,
+    addressLocality: localBusiness.address.addressLocality,
+    addressRegion: localBusiness.address.addressRegion,
+    addressCountry: localBusiness.address.addressCountry,
+  },
+
+  openingHoursSpecification: localBusiness.openingHoursSpecification.map(
+    (item) => ({
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: item.dayOfWeek,
+      opens: item.opens,
+      closes: item.closes,
+    })
+  ),
+
+  hasMap: localBusiness.mapUrl,
+
+  sameAs:
+    localBusiness.sameAs.length > 0
+      ? localBusiness.sameAs
+      : undefined,
+
+  hasOfferCatalog: {
+    "@type": "OfferCatalog",
+    name: "Behandlungen",
+    itemListElement: treatments.map((treatment) => ({
+      "@type": "Offer",
+      itemOffered: {
+        "@type": "Service",
+        name: treatment.title,
+        description: treatment.description,
+        provider: {
+          "@id": `${siteUrl}/#localbusiness`,
+        },
+      },
+    })),
+  },
+};
+
+const json = JSON.stringify(
+  schema,
+  (_key, value) => {
+    if (value === undefined) return undefined;
+    if (Array.isArray(value) && value.length === 0) return undefined;
+    return value;
+  },
+  2
+).replace(/</g, "\\u003c");
+---
+
+<script type="application/ld+json" set:html={json} />

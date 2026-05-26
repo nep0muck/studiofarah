@@ -4,8 +4,27 @@ import { navItems, site } from '@data/site';
 
 <header class="sticky top-0 z-50 border-b border-gray-200 shadow-sm shadow-gray-100 bg-white/90 backdrop-blur">
   <nav class="mx-auto flex max-w-6xl items-center justify-between px-4 py-4" aria-label="Hauptnavigation">
-    <a href="/" class="font-semibold" aria-label={`${site.name} Startseite`}>
-      {site.name}
+
+    <a
+      href="/"
+      class="group flex items-center gap-3"
+      aria-label={`Zur Startseite von ${site.name}`}
+    >
+      <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-pink-200 bg-gradient-to-br from-yellow-50 via-pink-50 to-gray-100 shadow-sm transition group-hover:scale-105">
+        <span class="font-serif text-xl font-semibold italic text-pink-600">
+          {site.textlogo}
+        </span>
+      </span>
+
+      <span class="leading-tight">
+        <span class="block text-lg font-semibold tracking-wide text-gray-900 md:text-xl">
+          {site.name}
+        </span>
+
+        <span class="hidden text-xs font-medium uppercase tracking-[0.18em] text-gray-500 sm:block">
+          {site.subtitle}
+        </span>
+      </span>
     </a>
 
     <div class="hidden items-center gap-6 md:flex">

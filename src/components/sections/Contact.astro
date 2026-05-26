@@ -1,10 +1,10 @@
 ---
-import { site } from '@data/site';
+import { site, localBusiness } from '@data/site';
 import Button from '../ui/Button.astro';
 const whatsappUrl = `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(site.whatsappMessage)}`;
 ---
 
-<section id="kontakt" class="section scroll-mt-24 border-t">
+<section id="kontakt" class="section">
   <div class="container grid gap-8 md:grid-cols-2">
     <div>
       <p class="mb-2 text-sm font-medium uppercase tracking-wide text-pink-500">Kontakt</p>
@@ -14,10 +14,13 @@ const whatsappUrl = `https://wa.me/${site.whatsappNumber}?text=${encodeURICompon
         Melden Sie sich gerne telefonisch, per E-Mail oder direkt über WhatsApp.
         Ich nehme mir Zeit für Ihr Anliegen und berate Sie persönlich.
       </p>
+      <p class="mt-4">
+        Ich melde mich so schnell wie möglich bei Ihnen zurück.
+      </p>
 
       <div class="mt-8 flex flex-wrap gap-3">
         <Button href={whatsappUrl} target="_blank" rel="noreferrer">
-          WhatsApp öffnen
+          Termin per WhatsApp anfragen
         </Button>
         <Button href={`mailto:${site.email}`}>
           E-Mail schreiben
@@ -32,6 +35,15 @@ const whatsappUrl = `https://wa.me/${site.whatsappNumber}?text=${encodeURICompon
         <p><a href={`tel:${site.phoneDisplay.replaceAll(' ', '')}`} class="hover:underline">{site.phoneDisplay}</a></p>
         <p><a href={`mailto:${site.email}`} class="hover:underline">{site.email}</a></p>
       </address>
+
+      <a
+        href={localBusiness.mapUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="btn btn-secondary mt-4"
+      >
+        Route planen
+      </a>
 
       <div class="mt-6">
         <h4 class="font-semibold">Öffnungszeiten</h4>

@@ -9,7 +9,7 @@ import Contact from '@components/sections/Contact.astro';
 import { site } from '@data/site';
 ---
 
-<BaseLayout title={site.name} description={site.description}>
+<BaseLayout title={site.name} description={site.description} path="/" includeLocalBusiness={true}>
   <Hero />
   <WelcomeIntro />
   <About />

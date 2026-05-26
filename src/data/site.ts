@@ -1,13 +1,15 @@
 export const site = {
   name: 'Studio Farah',
-  description: 'Kosmetikstudio für Behandlungen, Beratung und Wohlfühlmomente.',
+  subtitle: 'Kosmetik & Wohlbefinden',
+  textlogo: 'SF',
+  description: 'Studio Farah in Bremen-Findorff: Kosmetik, Gesichtsbehandlungen, Fußpflege, Maniküre und Wellness in ruhiger, persönlicher Atmosphäre.',
   url: 'https://studiofarah.de',
   email: 'kontakt@studiofarah.de',
   phoneDisplay: '+49 421 17270701',
   whatsappNumber: '491701234567',
   whatsappMessage: 'Hallo Studio Farah, ich möchte gerne einen Termin anfragen.',
   address: ['Worpsweder Straße 85', '28215 Bremen'],
-  openingHours: ['Mo–Fr: 09:00–18:00', 'Sa: nach Vereinbarung'],
+  openingHours: ['Mo - Fr: 09:00 - 18:00', 'Sa: nach Vereinbarung'],
 };
 
 export const navItems = [
@@ -17,6 +19,53 @@ export const navItems = [
   { label: 'Preise', href: '#preise' },
   { label: 'Kontakt', href: '#kontakt' },
 ];
+
+export const seo = {
+  siteUrl: 'https://studiofarah.de',
+  siteName: 'Studio Farah',
+  defaultTitle: 'Studio Farah | Kosmetikstudio in Bremen-Findorff',
+  defaultDescription:
+    'Studio Farah in Bremen-Findorff: Kosmetik, Gesichtsbehandlungen, Fußpflege, Maniküre und Wellness in ruhiger, persönlicher Atmosphäre.',
+  defaultImage: '/images/hero/studio-farah-hero.png',
+  locale: 'de_DE',
+} as const;
+
+export const localBusiness = {
+  type: 'BeautySalon',
+  name: 'Studio Farah',
+  description:
+    'Kosmetikstudio in Bremen-Findorff für Gesichtsbehandlungen, Fußpflege, Maniküre, Wachsenthaarung und kleine Wellness-Auszeiten.',
+  url: seo.siteUrl,
+  image: '/images/hero/studio-farah-hero.png',
+  logo: '/favicon.svg',
+  telephone: '+49 421 17270701',
+  email: 'kontakt@studiofarah.de',
+  priceRange: '€€',
+  address: {
+    streetAddress: 'Worpsweder Straße 85',
+    postalCode: '28215',
+    addressLocality: 'Bremen',
+    addressRegion: 'Bremen',
+    addressCountry: 'DE',
+  },
+  openingHoursSpecification: [
+    {
+      dayOfWeek: [
+        'Monday',
+        'Tuesday',
+        'Wednesday',
+        'Thursday',
+        'Friday',
+      ],
+      opens: '09:00',
+      closes: '18:00',
+    },
+  ],
+  additionalOpeningHours: 'Samstag nach Vereinbarung',
+  mapUrl:
+    'https://www.google.com/maps/search/?api=1&query=Studio%20Farah%2C%20Worpsweder%20Stra%C3%9Fe%2085%2C%2028215%20Bremen',
+  sameAs: [],
+} as const;
 
 export const treatmentsIntro = {
   eyebrow: 'Behandlungen',
@@ -29,37 +78,58 @@ export const treatments = [
     title: 'Gesichtsbehandlungen',
     description:
       'Individuelle Pflege für Ihre Haut – von der klassischen Kosmetikbehandlung bis zur wohltuenden Anti-Age-Anwendung.',
-    href: '#preise',
+    href: '#gesichtsbehandlungen',
+    image: {
+      src: '/images/treatments/gesichtsbehandlungen.webp',
+      alt: 'Entspannende Gesichtsbehandlung im Studio Farah',
+    },
   },
   {
     title: 'Maniküre & Nägel',
     description:
       'Gepflegte Hände und schöne Nägel – sorgfältig behandelt und auf Wunsch mit entspannender Spa-Pflege.',
-    href: '#preise',
+    href: '#manikuere-naegel',
+    image: {
+      src: '/images/treatments/manikuere-naegel.webp',
+      alt: 'Maniküre und Nagelpflege im Studio Farah',
+    },
   },
   {
     title: 'Fußpflege',
     description:
       'Wohltuende Pflege für Ihre Füße – damit Sie sich rundum gepflegt und wohl fühlen.',
-    href: '#preise',
+    href: '#fusspflege',
+    image: {
+      src: '/images/treatments/fusspflege.webp',
+      alt: 'Wohltuende Fußpflege im Studio Farah',
+    },
   },
   {
     title: 'Wachsenthaarung',
     description:
       'Für ein glattes und gepflegtes Hautgefühl – sanft, gründlich und auf Zuckerbasis.',
-    href: '#preise',
+    href: '#enthaarung',
+    image: {
+      src: '/images/treatments/wachsenthaarung.webp',
+      alt: 'Sanfte Wachsenthaarung auf Zuckerbasis',
+    },
   },
   {
     title: 'Extras',
     description:
       'Kleine Schönheitsbehandlungen wie Augenbrauenkorrektur, Wimpern färben oder Make-up runden das Angebot ab.',
-    href: '#preise',
+    href: '#extras',
+    image: {
+      src: '/images/treatments/extras.webp',
+      alt: 'Augenbrauen- und Wimpernbehandlung im Studio Farah',
+    },
   },
 ] as const;
 
 export const priceSections = [
   {
     title: 'Gesichtsbehandlungen',
+    id: 'gesichtsbehandlungen',
     description:
       'Das Ziel einer klassischen Kosmetikbehandlung ist es, mit gezielten Anwendungen und geeigneten Pflegeprodukten das Erscheinungsbild Ihrer Haut zu verbessern. Der individuelle Ablauf richtet sich nach Ihrem Hauttyp und Ihren persönlichen Wünschen.',
     items: [
@@ -95,6 +165,7 @@ export const priceSections = [
   },
   {
     title: 'Maniküre und Nägel',
+    id: 'manikuere-naegel',
     description:
       'Die Intensivbehandlung verwöhnt, pflegt und beruhigt Ihre Hände mit Aroma-Paraffinwachs. Die Wärme geht tief in die Haut, tut den Gelenken gut, spendet Feuchtigkeit und sorgt für ein angenehm entspanntes Hautgefühl.',
     items: [
@@ -118,6 +189,7 @@ export const priceSections = [
   },
   {
     title: 'Fußpflege',
+    id: 'fusspflege',
     description:
       'Unsere Füße leisten jeden Tag große Arbeit und tragen uns durchs Leben. Grund genug, ihnen die richtige Pflege zukommen zu lassen und sie zu verwöhnen. Ihre Füße sind bei mir in guten Händen.',
     items: [
@@ -136,6 +208,7 @@ export const priceSections = [
   },
   {
     title: 'Wachsenthaarung auf Zuckerbasis',
+    id: 'enthaarung',
     description:
       'Eine glatte und geschmeidige Haut gehört für viele Menschen zum gepflegten Erscheinungsbild. Die Haarentfernung mit Wachs zählt zu den bewährten Methoden und sorgt für ein glattes Hautgefühl ohne Stoppeln.',
     items: [
@@ -158,6 +231,7 @@ export const priceSections = [
   },
   {
     title: 'Extras',
+    id: 'extras',
     description: '',
     items: [
       {

@@ -4,32 +4,34 @@ import { site } from '@data/site';
 ---
 
 <BaseLayout title="Impressum" description={`Impressum von ${site.name}`}>
-  <section class="mx-auto max-w-3xl px-4 py-16">
-    <h1 class="text-4xl font-semibold">Impressum</h1>
+  <section class="section mx-auto max-w-3xl!">
+    <div class="container">
+      <h1 class="text-4xl font-semibold">Impressum</h1>
 
-    <div class="mt-8 space-y-6">
-      <section>
-        <h2 class="text-xl font-semibold">Angaben gemäß § 5 TMG</h2>
-        <p class="mt-3">Studio Farah</p>
-        <p>Inhaberin: Vorname Nachname</p>
-        {site.address.map((line) => <p>{line}</p>)}
-      </section>
+      <div class="mt-8 space-y-6">
+        <section>
+          <h2 class="text-xl font-semibold">Angaben gemäß § 5 TMG</h2>
+          <p class="mt-3">Studio Farah</p>
+          <p>Inhaberin: Vorname Nachname</p>
+          {site.address.map((line) => <p>{line}</p>)}
+        </section>
 
-      <section>
-        <h2 class="text-xl font-semibold">Kontakt</h2>
-        <p class="mt-3">Telefon: {site.phoneDisplay}</p>
-        <p>E-Mail: {site.email}</p>
-      </section>
+        <section>
+          <h2 class="text-xl font-semibold">Kontakt</h2>
+          <p class="mt-3">Telefon: {site.phoneDisplay}</p>
+          <p>E-Mail: {site.email}</p>
+        </section>
 
-      <section>
-        <h2 class="text-xl font-semibold">Umsatzsteuer-ID</h2>
-        <p class="mt-3">Umsatzsteuer-Identifikationsnummer gemäß § 27a Umsatzsteuergesetz: DE000000000</p>
-      </section>
+        <section>
+          <h2 class="text-xl font-semibold">Umsatzsteuer-ID</h2>
+          <p class="mt-3">Umsatzsteuer-Identifikationsnummer gemäß § 27a Umsatzsteuergesetz: DE000000000</p>
+        </section>
 
-      <section>
-        <h2 class="text-xl font-semibold">Hinweis</h2>
-        <p class="mt-3">Bitte alle rechtlichen Angaben vor Veröffentlichung prüfen und ersetzen.</p>
-      </section>
+        <section>
+          <h2 class="text-xl font-semibold">Hinweis</h2>
+          <p class="mt-3">Bitte alle rechtlichen Angaben vor Veröffentlichung prüfen und ersetzen.</p>
+        </section>
+      </div>
     </div>
   </section>
 </BaseLayout>

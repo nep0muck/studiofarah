@@ -1,0 +1,54 @@
+---
+import { seo } from "../../data/site";
+
+type Props = {
+  title?: string;
+  description?: string;
+  path?: string;
+  image?: string;
+  type?: "website" | "article";
+  noindex?: boolean;
+};
+
+const {
+  title = seo.defaultTitle,
+  description = seo.defaultDescription,
+  path = "/",
+  image = seo.defaultImage,
+  type = "website",
+  noindex = false,
+} = Astro.props as Props;
+
+const siteUrl = seo.siteUrl.replace(/\/$/, "");
+
+const fullTitle =
+  title === seo.defaultTitle || title.includes(seo.siteName)
+    ? title
+    : `${title} | ${seo.siteName}`;
+
+const canonicalUrl = new URL(path, `${siteUrl}/`).toString();
+
+const imageUrl = image.startsWith("http")
+  ? image
+  : new URL(image, `${siteUrl}/`).toString();
+---
+
+<title>{fullTitle}</title>
+
+<meta name="description" content={description} />
+<meta name="robots" content={noindex ? "noindex, nofollow" : "index, follow"} />
+
+<link rel="canonical" href={canonicalUrl} />
+
+<meta property="og:type" content={type} />
+<meta property="og:locale" content={seo.locale} />
+<meta property="og:site_name" content={seo.siteName} />
+<meta property="og:title" content={fullTitle} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonicalUrl} />
+<meta property="og:image" content={imageUrl} />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={fullTitle} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={imageUrl} />
