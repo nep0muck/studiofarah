@@ -53,6 +53,10 @@ jobs:
           HETZNER_REMOTE_DIR: ${{ vars.HETZNER_REMOTE_DIR }}
         run: python3 scripts/deploy-ftps.py --source dist
 
+      - name: Verify public website and PDF
+        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main' && vars.HETZNER_DEPLOY_ENABLED == 'true'
+        run: node --experimental-strip-types scripts/verify-live.mjs
+
       - name: Explain initial setup
         if: github.event_name != 'pull_request' && vars.HETZNER_DEPLOY_ENABLED != 'true'
         run: echo 'Build succeeded. Set the Hetzner repository variables and secrets, then HETZNER_DEPLOY_ENABLED=true to enable automatic uploads.' >> "$GITHUB_STEP_SUMMARY"

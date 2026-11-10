@@ -32,7 +32,7 @@ Der Standardport ist 21 für explizites FTPS. **SFTP ist ein anderes Protokoll u
 
 1. Website oder Preise ändern, lokal mit `npm run build` prüfen.
 2. Änderungen committen und nach `main` pushen. Für fertige, über den Assistenten beauftragte Änderungen ist dies als Standard in `AGENTS.md` dokumentiert. Bei einem ausdrücklichen Entwurfs-/Prüfauftrag wird nicht veröffentlicht.
-3. GitHub führt `npm ci`, PDF-/QR-Erzeugung, Astro-Build und Deployment-Prüfungen aus. Nur bei Erfolg und aktivierter Konfiguration folgt der Upload.
+3. GitHub führt `npm ci`, PDF-/QR-Erzeugung, Astro-Build und Deployment-Prüfungen aus. Nur bei Erfolg und aktivierter Konfiguration folgt der Upload. Danach vergleicht der Workflow Startseite, Stylesheets und PDF auf der öffentlichen HTTPS-Domain bytegenau mit dem Build. Ein falsches Domainziel, ein abweichender Dokumentenordner oder veraltete Cache-Inhalte führen zu einem klaren Prüfungsfehler.
 
 Pull Requests laden nichts auf den Webserver. Uploads laufen nacheinander; ein laufender Upload wird nicht durch einen neuen Push unterbrochen. Neue Assets werden vor HTML übertragen. Jede Datei wird zunächst unter einem temporären Namen hochgeladen und dann umbenannt. Der Ablauf ist kein atomarer Austausch der gesamten Website.
 
