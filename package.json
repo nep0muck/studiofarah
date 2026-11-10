@@ -4,7 +4,11 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "postinstall": "node scripts/prepare-toolchain.mjs",
+    "generate:prices": "node --experimental-strip-types scripts/generate-price-assets.mjs",
+    "predev": "npm run generate:prices",
     "dev": "astro dev",
+    "prebuild": "npm run generate:prices",
     "build": "astro build",
     "preview": "astro preview"
   },
@@ -12,5 +16,9 @@
     "@tailwindcss/vite": "latest",
     "astro": "latest",
     "tailwindcss": "latest"
+  },
+  "devDependencies": {
+    "pdf-lib": "1.17.1",
+    "qrcode": "1.5.4"
   }
 }

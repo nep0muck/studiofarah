@@ -1,21 +1,10 @@
 ---
-const {
-  href = "#",
-  variant = "primary",
-  class: className = "",
-} = Astro.props;
+import type { HTMLAttributes } from 'astro/types';
 
-const baseClasses =
-  "inline-flex items-center justify-center rounded-full px-5 py-3 text-sm font-medium transition";
-
-const variants = {
-  primary: "btn-primary",
-  secondary: "btn-secondary",
-};
-
-const classes = `${baseClasses} ${variants[variant]} ${className}`;
+type Props = HTMLAttributes<'a'> & { variant?: 'primary' | 'secondary' };
+const { variant = 'primary', class: className, ...attributes } = Astro.props;
 ---
 
-<a href={href} class={classes}>
+<a {...attributes} class:list={[variant === 'primary' ? 'btn-primary' : 'btn-secondary', className]}>
   <slot />
 </a>

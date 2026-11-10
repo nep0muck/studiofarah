@@ -1,62 +1,21 @@
 ---
-import { about } from "../../data/site";
-import AboutImageGrid from "../about/AboutImageGrid.astro";
+import { about, studioImages } from '@data/site';
 ---
 
-<section id="ueber-mich" class="section bg-yellow-50/40">
-  <div class="container">
-    <div class="grid gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
-      <div class="rounded-3xl border border-gray-200 bg-white/85 p-6 shadow-sm md:p-8 lg:p-10">
-        <p class="text-sm font-medium uppercase tracking-wide text-pink-500">
-          {about.eyebrow}
-        </p>
-
-        <h2 class="mt-3 text-3xl font-semibold leading-tight text-gray-900 md:text-4xl">
-          {about.title}
-        </h2>
-
-        <p class="mt-6 text-lg leading-relaxed text-gray-700">
-          {about.intro}
-        </p>
-
-        <div class="mt-6 space-y-4 text-base leading-relaxed text-gray-700">
-          {about.paragraphs.map((paragraph) => (
-            <p>{paragraph}</p>
-          ))}
-        </div>
-
-        <div class="mt-8 rounded-3xl border border-gray-200 bg-yellow-50/60 p-5 md:p-6">
-          <p class="font-medium text-gray-900">
-            {about.qualificationsIntro}
-          </p>
-
-          <ul class="mt-4 flex flex-wrap gap-3">
-            {about.qualifications.map((qualification) => (
-              <li class="rounded-full border border-pink-200 bg-white px-4 py-2 text-sm font-medium text-gray-800">
-                {qualification}
-              </li>
-            ))}
-          </ul>
-
-          <p class="mt-5 text-sm leading-relaxed text-gray-600">
-            {about.certification}
-          </p>
-        </div>
-
-        <div class="mt-8 rounded-3xl bg-pink-50/70 p-5">
-          <p class="text-base leading-relaxed text-gray-700">
-            {about.closing}
-          </p>
-
-          <p class="mt-4 font-semibold text-gray-900">
-            {about.signature}
-          </p>
-        </div>
-      </div>
-
-      <div>
-        <AboutImageGrid images={about.images} />
-      </div>
+<section id="ueber-mich" class="section bg-blush" aria-labelledby="about-title">
+  <div class="container grid items-center gap-10 md:grid-cols-2 lg:gap-20">
+    <figure>
+      <img {...studioImages.reception} loading="lazy" decoding="async"
+        class="aspect-[5/4] w-full rounded-sm object-cover" />
+      <figcaption class="mt-3 text-base text-muted">Der Empfangsbereich mit ausgewählten Pflegeprodukten.</figcaption>
+    </figure>
+    <div>
+      <p class="eyebrow">Persönlich für Sie da</p>
+      <h2 id="about-title" class="section-title mt-3">Schön, dass Sie da sind.<br />Ich bin Farah Vakili.</h2>
+      <p class="mt-6">{about.intro}</p>
+      <p class="mt-4 text-muted">{about.paragraphs[1]}</p>
+      <p class="mt-5 border-l-2 border-brand/40 pl-5 text-base text-muted">{about.certification}<br />Fortbildungen in {about.qualifications.join(', ')}.</p>
+      <p class="signature mt-7 text-3xl italic text-brand">{about.signature}</p>
     </div>
   </div>
 </section>

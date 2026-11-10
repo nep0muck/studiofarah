@@ -1,24 +1,46 @@
 export const site = {
   name: 'Studio Farah',
   subtitle: 'Kosmetik & Wohlbefinden',
-  textlogo: 'SF',
   description: 'Studio Farah in Bremen-Findorff: Kosmetik, Gesichtsbehandlungen, Fußpflege, Maniküre und Wellness in ruhiger, persönlicher Atmosphäre.',
   url: 'https://studiofarah.de',
   email: 'kontakt@studiofarah.de',
   phoneDisplay: '+49 421 17270701',
-  whatsappNumber: '491701234567',
-  whatsappMessage: 'Hallo Studio Farah, ich möchte gerne einen Termin anfragen.',
   address: ['Worpsweder Straße 85', '28215 Bremen'],
   openingHours: ['Mo - Fr: 09:00 - 18:00', 'Sa: nach Vereinbarung'],
 };
 
 export const navItems = [
-  { label: 'Start', href: '#start' },
-  { label: 'Über mich', href: '#ueber-mich' },
   { label: 'Behandlungen', href: '#behandlungen' },
+  { label: 'Über mich', href: '#ueber-mich' },
   { label: 'Preise', href: '#preise' },
   { label: 'Kontakt', href: '#kontakt' },
 ];
+
+// Update this date together with prices; downloads are rebuilt from these data.
+export const priceListInfo = {
+  updatedAt: '2026-11-10',
+  url: new URL('/#preise', site.url).href,
+  pdfPath: '/downloads/studio-farah-preisliste.pdf',
+  flyerPath: '/downloads/studio-farah-flyer.pdf',
+  qrSvgPath: '/downloads/studio-farah-qr-code.svg',
+  qrPngPath: '/downloads/studio-farah-qr-code.png',
+} as const;
+
+// Original studio photographs; no staged treatment or customer photographs.
+export const studioImages = {
+  treatmentRoom: {
+    src: '/images/about/studio-behandlungsraum.jpg',
+    alt: 'Der Behandlungsraum im Studio Farah mit Pflege- und Behandlungsstühlen',
+    width: 3264,
+    height: 1952,
+  },
+  reception: {
+    src: '/images/about/kosmetik-produkte.jpg',
+    alt: 'Der Empfang im Studio Farah mit Produktvitrine und Zertifikaten',
+    width: 3264,
+    height: 1952,
+  },
+} as const;
 
 export const seo = {
   siteUrl: 'https://studiofarah.de',
@@ -26,7 +48,7 @@ export const seo = {
   defaultTitle: 'Studio Farah | Kosmetikstudio in Bremen-Findorff',
   defaultDescription:
     'Studio Farah in Bremen-Findorff: Kosmetik, Gesichtsbehandlungen, Fußpflege, Maniküre und Wellness in ruhiger, persönlicher Atmosphäre.',
-  defaultImage: '/images/hero/studio-farah-hero.png',
+  defaultImage: studioImages.treatmentRoom.src,
   locale: 'de_DE',
 } as const;
 
@@ -36,8 +58,8 @@ export const localBusiness = {
   description:
     'Kosmetikstudio in Bremen-Findorff für Gesichtsbehandlungen, Fußpflege, Maniküre, Wachsenthaarung und kleine Wellness-Auszeiten.',
   url: seo.siteUrl,
-  image: '/images/hero/studio-farah-hero.png',
-  logo: '/favicon.svg',
+  image: studioImages.treatmentRoom.src,
+  logo: '/logo-studio-farah.png',
   telephone: '+49 421 17270701',
   email: 'kontakt@studiofarah.de',
   priceRange: '€€',
@@ -79,50 +101,30 @@ export const treatments = [
     description:
       'Individuelle Pflege für Ihre Haut – von der klassischen Kosmetikbehandlung bis zur wohltuenden Anti-Age-Anwendung.',
     href: '#gesichtsbehandlungen',
-    image: {
-      src: '/images/treatments/gesichtsbehandlungen.webp',
-      alt: 'Entspannende Gesichtsbehandlung im Studio Farah',
-    },
   },
   {
     title: 'Maniküre & Nägel',
     description:
       'Gepflegte Hände und schöne Nägel – sorgfältig behandelt und auf Wunsch mit entspannender Spa-Pflege.',
     href: '#manikuere-naegel',
-    image: {
-      src: '/images/treatments/manikuere-naegel.webp',
-      alt: 'Maniküre und Nagelpflege im Studio Farah',
-    },
   },
   {
     title: 'Fußpflege',
     description:
       'Wohltuende Pflege für Ihre Füße – damit Sie sich rundum gepflegt und wohl fühlen.',
     href: '#fusspflege',
-    image: {
-      src: '/images/treatments/fusspflege.webp',
-      alt: 'Wohltuende Fußpflege im Studio Farah',
-    },
   },
   {
     title: 'Wachsenthaarung',
     description:
       'Für ein glattes und gepflegtes Hautgefühl – sanft, gründlich und auf Zuckerbasis.',
     href: '#enthaarung',
-    image: {
-      src: '/images/treatments/wachsenthaarung.webp',
-      alt: 'Sanfte Wachsenthaarung auf Zuckerbasis',
-    },
   },
   {
     title: 'Extras',
     description:
-      'Kleine Schönheitsbehandlungen wie Augenbrauenkorrektur, Wimpern färben oder Make-up runden das Angebot ab.',
+      'Augenbrauenkorrektur sowie das Färben von Augenbrauen und Wimpern runden das Angebot ab.',
     href: '#extras',
-    image: {
-      src: '/images/treatments/extras.webp',
-      alt: 'Augenbrauen- und Wimpernbehandlung im Studio Farah',
-    },
   },
 ] as const;
 
@@ -136,24 +138,24 @@ export const priceSections = [
       {
         title: 'Kosmetikbehandlung',
         description:
-          'Vorgespräch, Abreinigung, Hautanalyse, Peeling, Bedampfung, Ausreinigung, Maske und Abschlusspflege.',
+          'Abreinigung, Peeling, Bedampfung, Zupfen, Ausreinigung, Ampulle, Handpackung, Massage, Maske und Abschlusspflege.',
         price: '59 €',
       },
       {
-        title: 'Anti-Age Behandlung',
+        title: 'Anti-Age-Behandlung',
         description: 'Anti-Aging-Behandlung mit hochwertigen Produkten.',
         price: '85 €',
       },
       {
         title: 'Frische Kick',
         description:
-          'Abreinigung, Peeling, Bedampfung, Wirkstoffampulle, Massage und Abschlusspflege.',
+          'Abreinigung, Peeling, Bedampfung, Zupfen, Handpackung, Maske und Tagespflege.',
         price: '50 €',
       },
       {
         title: 'Grundreinigung',
         description:
-          'Abreinigung, Peeling, Bedampfung, Ausreinigung, Reinigungsmaske und Abschlusspflege.',
+          'Abreinigung, Peeling, Bedampfung, Zupfen, Ausreinigung, Handpackung, Maske und Abschlusspflege.',
         price: '65 €',
       },
       {
@@ -194,8 +196,8 @@ export const priceSections = [
       'Unsere Füße leisten jeden Tag große Arbeit und tragen uns durchs Leben. Grund genug, ihnen die richtige Pflege zukommen zu lassen und sie zu verwöhnen. Ihre Füße sind bei mir in guten Händen.',
     items: [
       {
-        title: 'Klassische Fußpflege mit Fußbad',
-        description: '',
+        title: 'Klassische Fußpflege',
+        description: 'Fußpflege mit Fußbad.',
         price: 'ab 32 €',
       },
       {
@@ -213,19 +215,19 @@ export const priceSections = [
       'Eine glatte und geschmeidige Haut gehört für viele Menschen zum gepflegten Erscheinungsbild. Die Haarentfernung mit Wachs zählt zu den bewährten Methoden und sorgt für ein glattes Hautgefühl ohne Stoppeln.',
     items: [
       {
-        title: 'Oberlippe und Kinn',
+        title: 'Unterschenkel',
         description: '',
-        price: '12 €',
+        price: '30 €',
       },
       {
-        title: 'Beine komplett',
+        title: 'Beine',
         description: '',
         price: '55 €',
       },
       {
-        title: 'Unterschenkel',
+        title: 'Oberlippe und Kinn',
         description: '',
-        price: '30 €',
+        price: '12 €',
       },
     ],
   },
@@ -237,7 +239,7 @@ export const priceSections = [
       {
         title: 'Augenbrauenkorrektur',
         description: '',
-        price: 'ab 8 €',
+        price: '8 €',
       },
       {
         title: 'Augenbrauen färben',
@@ -248,16 +250,6 @@ export const priceSections = [
         title: 'Wimpern färben',
         description: '',
         price: '12 €',
-      },
-      {
-        title: 'Tages-Make-up',
-        description: '',
-        price: '38 €',
-      },
-      {
-        title: 'Abend-Make-up',
-        description: '',
-        price: '48 €',
       },
     ],
   },
@@ -279,21 +271,4 @@ export const about = {
   closing:
     'Über ein persönliches Kennenlernen würde ich mich sehr freuen.',
   signature: 'Ihre Farah Vakili',
-  images: [
-    {
-      src: '/images/about/farah-vakili.jpg',
-      label: 'Farah Vakili',
-      alt: 'Farah Vakili im Kosmetikstudio',
-    },
-    {
-      src: '/images/about/studio-behandlungsraum.jpg',
-      label: 'Studio',
-      alt: 'Behandlungsraum im Kosmetikstudio Studio Farah',
-    },
-    {
-      src: '/images/about/kosmetik-produkte.jpg',
-      label: 'Pflegeprodukte',
-      alt: 'Kosmetikprodukte in angenehmer Studioatmosphäre',
-    },
-  ],
 } as const;

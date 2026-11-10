@@ -1,55 +1,82 @@
 ---
 import { navItems, site } from '@data/site';
+import StudioLogo from '../ui/StudioLogo.astro';
+
+const links = navItems.filter((item) => item.href !== '#start');
+const phoneHref = `tel:${site.phoneDisplay.replace(/[^+\d]/g, '')}`;
 ---
 
-<header class="sticky top-0 z-50 border-b border-gray-200 shadow-sm shadow-gray-100 bg-white/90 backdrop-blur">
-  <nav class="mx-auto flex max-w-6xl items-center justify-between px-4 py-4" aria-label="Hauptnavigation">
-
-    <a
-      href="/"
-      class="group flex items-center gap-3"
-      aria-label={`Zur Startseite von ${site.name}`}
-    >
-      <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-pink-200 bg-gradient-to-br from-yellow-50 via-pink-50 to-gray-100 shadow-sm transition group-hover:scale-105">
-        <span class="font-serif text-xl font-semibold italic text-pink-600">
-          {site.textlogo}
-        </span>
-      </span>
-
-      <span class="leading-tight">
-        <span class="block text-lg font-semibold tracking-wide text-gray-900 md:text-xl">
-          {site.name}
-        </span>
-
-        <span class="hidden text-xs font-medium uppercase tracking-[0.18em] text-gray-500 sm:block">
-          {site.subtitle}
-        </span>
+<header class="sticky top-0 z-50 border-b border-line bg-white">
+  <nav class="container relative flex min-h-22 items-center justify-between gap-4 py-3 lg:min-h-25" aria-label="Hauptnavigation">
+    <a href="/#start" class="flex min-h-12 shrink-0 items-center gap-2 text-brand sm:gap-3" aria-label={`${site.name} – zur Startseite`}>
+      <StudioLogo class="h-10 w-10 shrink-0 sm:h-12 sm:w-12" />
+      <span>
+        <span class="brand-wordmark block text-[1.7rem] leading-tight sm:text-[2rem]">{site.name}</span>
+        <span class="hidden text-base leading-snug text-muted sm:block">{site.subtitle}</span>
       </span>
     </a>
 
-    <div class="hidden items-center gap-6 md:flex">
-      {navItems.map((item) => (
-        <a href={item.href} class="text-sm hover:underline">
+    <div class="hidden items-center gap-5 lg:flex">
+      {links.map((item) => (
+        <a href={`/${item.href}`} class="inline-flex min-h-12 items-center text-base text-ink underline-offset-8 hover:text-brand hover:underline">
           {item.label}
         </a>
       ))}
-<!--       <a href="/impressum/" class="text-sm hover:underline">Impressum</a>
-      <a href="/datenschutz/" class="text-sm hover:underline">Datenschutz</a> -->
+      <a href={phoneHref} class="btn-primary ml-2 text-base">Anrufen</a>
     </div>
 
-    <details class="relative md:hidden">
-      <summary class="cursor-pointer list-none rounded border btn-secondary px-3 py-2 text-sm">
+    <details id="mobile-menu" class="group lg:hidden">
+      <summary class="flex min-h-12 cursor-pointer list-none items-center justify-center gap-2 border border-line bg-white px-3 text-base font-medium text-ink [&::-webkit-details-marker]:hidden">
+        <svg class="h-5 w-5 group-open:hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16" /></svg>
+        <svg class="hidden h-5 w-5 group-open:block" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="m5 5 14 14M19 5 5 19" /></svg>
         Menü
       </summary>
-      <div class="absolute right-0 mt-2 flex w-56 flex-col gap-3 rounded border card-soft bg-white! p-4 shadow">
-        {navItems.map((item) => (
-          <a href={item.href} class="text-sm hover:underline">
+      <div class="absolute inset-x-0 top-full border-b border-line bg-white px-6 pb-6 pt-3">
+        {links.map((item) => (
+          <a href={`/${item.href}`} class="flex min-h-13 items-center border-t border-line text-lg text-ink hover:text-brand">
             {item.label}
           </a>
         ))}
-<!--         <a href="/impressum/" class="text-sm hover:underline">Impressum</a>
-        <a href="/datenschutz/" class="text-sm hover:underline">Datenschutz</a> -->
+        <a href={phoneHref} class="btn-primary mt-4 w-full">{site.phoneDisplay} anrufen</a>
       </div>
     </details>
   </nav>
 </header>
+
+<script>
+  const menu = document.querySelector<HTMLDetailsElement>('#mobile-menu');
+  const toggle = menu?.querySelector<HTMLElement>('summary');
+
+  menu?.querySelectorAll<HTMLAnchorElement>('a').forEach((link) => {
+    link.addEventListener('click', () => {
+      menu.open = false;
+      const destination = new URL(link.href);
+      if (destination.pathname === window.location.pathname && destination.hash) {
+        const section = document.getElementById(destination.hash.slice(1));
+        if (section) {
+          section.tabIndex = -1;
+          requestAnimationFrame(() => section.focus({ preventScroll: true }));
+        }
+      }
+    });
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && menu?.open) {
+      menu.open = false;
+      toggle?.focus();
+    }
+  });
+
+  document.addEventListener('click', (event) => {
+    if (menu?.open && event.target instanceof Node && !menu.contains(event.target)) {
+      menu.open = false;
+    }
+  });
+
+  menu?.addEventListener('focusout', (event) => {
+    if (event.relatedTarget instanceof Node && !menu.contains(event.relatedTarget)) {
+      menu.open = false;
+    }
+  });
+</script>

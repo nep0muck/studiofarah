@@ -1,11 +1,9 @@
 ---
-//import '@styles/global.css';
-import 'src/styles/global.css';
+import '../styles/global.css';
 import SEO from "../components/seo/SEO.astro";
 import LocalBusinessJsonLd from "../components/seo/LocalBusinessJsonLd.astro";
 import Navigation from '@components/layout/Navigation.astro';
 import Footer from '@components/layout/Footer.astro';
-import { site } from '@data/site';
 
 type Props = {
   title?: string;
@@ -25,7 +23,6 @@ const {
   includeLocalBusiness = false,
 } = Astro.props as Props;
 
-const pageTitle = title === site.name ? site.name : `${title} | ${site.name}`;
 ---
 
 <!doctype html>
@@ -45,11 +42,12 @@ const pageTitle = title === site.name ? site.name : `${title} | ${site.name}`;
 
     {includeLocalBusiness && <LocalBusinessJsonLd />}
 
-    <link rel="icon" href="/favicon.svg" />
+    <link rel="icon" type="image/png" href="/logo-studio-farah.png" />
   </head>
-  <body class="bg-white text-neutral-900 antialiased">
+  <body>
+    <a href="#inhalt" class="skip-link">Zum Inhalt springen</a>
     <Navigation />
-    <main>
+    <main id="inhalt" tabindex="-1">
       <slot />
     </main>
     <Footer />

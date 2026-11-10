@@ -1,11 +1,18 @@
 # build output
 dist/
 
+# Generated from src/data/site.ts before development and builds
+public/downloads/
+
 # generated types
 .astro/
 
 # dependencies
 node_modules/
+
+# Python deployment helper caches
+__pycache__/
+*.py[cod]
 
 # logs
 npm-debug.log*

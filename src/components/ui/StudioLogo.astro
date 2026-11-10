@@ -1,0 +1,13 @@
+---
+// Reproduction from the supplied chat preview, not the original source file.
+const { class: className = '' } = Astro.props;
+---
+
+<img
+  src="/logo-studio-farah.png"
+  width="1281"
+  height="1227"
+  alt=""
+  class:list={['object-contain', className]}
+  decoding="async"
+/>

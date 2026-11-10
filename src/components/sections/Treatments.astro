@@ -1,56 +1,36 @@
 ---
-import { treatments, treatmentsIntro } from "../../data/site";
+import { treatments, treatmentsIntro } from '@data/site';
+const mainTreatments = treatments.slice(0, 3);
+const otherTreatments = treatments.slice(3);
 ---
 
-<section id="behandlungen" class="section bg-white">
+<section id="behandlungen" class="section" aria-labelledby="behandlungen-title">
   <div class="container">
-    <div class="mx-auto max-w-3xl text-center">
-      <p class="text-sm font-medium uppercase tracking-wide text-pink-500">
-        {treatmentsIntro.eyebrow}
-      </p>
-
-      <h2 class="mt-3 text-3xl font-semibold leading-tight text-gray-900 md:text-4xl">
-        {treatmentsIntro.title}
-      </h2>
-
-      <p class="mt-4 text-base leading-relaxed text-gray-700">
-        {treatmentsIntro.text}
-      </p>
+    <div class="max-w-2xl">
+      <p class="eyebrow">Meine Behandlungen</p>
+      <h2 id="behandlungen-title" class="section-title mt-3">Pflege, die Ihnen guttut.</h2>
+      <p class="mt-5 text-muted">{treatmentsIntro.text}</p>
     </div>
-
-    <div class="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-      {treatments.map((treatment) => (
-        <article class="group overflow-hidden rounded-3xl border border-gray-200 bg-yellow-50/40 p-4 shadow-sm transition hover:-translate-y-1 hover:bg-pink-50/50 hover:shadow-md">
-          <div class="overflow-hidden rounded-2xl border border-gray-100 bg-gray-100">
-            <img
-              src={treatment.image.src}
-              alt={treatment.image.alt}
-              width="960"
-              height="720"
-              loading="lazy"
-              decoding="async"
-              class="aspect-[4/3] w-full object-cover transition duration-500 group-hover:scale-105"
-            />
-          </div>
-
-          <div class="flex h-full flex-col px-2 pb-2 pt-6">
-            <h3 class="text-xl font-semibold text-gray-900">
-              {treatment.title}
-            </h3>
-
-            <p class="mt-3 text-sm leading-relaxed text-gray-700">
-              {treatment.description}
-            </p>
-
-            <a
-              href={treatment.href}
-              class="mt-6 btn btn-secondary inline-flex items-center text-sm font-medium text-pink-600 transition group-hover:text-pink-700"
-            >
-              {treatment.title} ansehen
-            </a>
-
-          </div>
+    <div class="mt-10 grid gap-9 md:grid-cols-3 md:gap-7">
+      {mainTreatments.map((treatment, index) => (
+        <article class="border-t border-line pt-6">
+          <p class="font-serif text-3xl text-brand" aria-hidden="true">0{index + 1}</p>
+          <a href={treatment.href} class="group block" aria-label={`${treatment.title}: Behandlungen und Preise`}>
+            <h3 class="mt-4 text-[1.75rem] group-hover:text-brand-dark">{treatment.title}</h3>
+          </a>
+          <p class="mt-3 text-muted">{treatment.description}</p>
+          <a href={treatment.href} class="text-link mt-3 inline-flex min-h-11 items-center gap-2 text-base font-semibold">
+            Behandlungen & Preise <span aria-hidden="true">→</span>
+          </a>
         </article>
+      ))}
+    </div>
+    <div class="mt-10 flex flex-wrap items-center gap-x-7 gap-y-2 border-t border-line pt-5 text-base">
+      <p class="text-muted">Außerdem für Sie da:</p>
+      {otherTreatments.map((treatment) => (
+        <a class="text-link inline-flex min-h-11 items-center gap-2 font-semibold" href={treatment.href}>
+          {treatment.title} <span aria-hidden="true">→</span>
+        </a>
       ))}
     </div>
   </div>
