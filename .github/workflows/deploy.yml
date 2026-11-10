@@ -34,6 +34,7 @@ jobs:
         run: npm ci --no-audit --no-fund
 
       - name: Build website, PDFs and QR codes
+        id: build
         run: npm run build
         env:
           ASTRO_TELEMETRY_DISABLED: '1'
@@ -54,7 +55,7 @@ jobs:
         run: python3 scripts/deploy-ftps.py --source dist
 
       - name: Verify public website and PDF
-        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main' && vars.HETZNER_DEPLOY_ENABLED == 'true'
+        if: ${{ !cancelled() && steps.build.outcome == 'success' && github.event_name != 'pull_request' && github.ref == 'refs/heads/main' && vars.HETZNER_DEPLOY_ENABLED == 'true' }}
         run: node --experimental-strip-types scripts/verify-live.mjs
 
       - name: Explain initial setup

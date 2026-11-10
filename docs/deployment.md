@@ -36,6 +36,8 @@ Beim Kopieren des Zielpfads mitgenommene Leerzeichen, Tabs und Zeilenumbrüche a
 2. Änderungen committen und nach `main` pushen. Für fertige, über den Assistenten beauftragte Änderungen ist dies als Standard in `AGENTS.md` dokumentiert. Bei einem ausdrücklichen Entwurfs-/Prüfauftrag wird nicht veröffentlicht.
 3. GitHub führt `npm ci`, PDF-/QR-Erzeugung, Astro-Build und Deployment-Prüfungen aus. Nur bei Erfolg und aktivierter Konfiguration folgt der Upload. Danach vergleicht der Workflow Startseite, Stylesheets und PDF auf der öffentlichen HTTPS-Domain bytegenau mit dem Build. Ein falsches Domainziel, ein abweichender Dokumentenordner oder veraltete Cache-Inhalte führen zu einem klaren Prüfungsfehler.
 
+Die öffentliche HTTPS-Prüfung läuft nach einem erfolgreichen Build auch dann, wenn der Upload fehlschlägt. So lassen sich Auslieferung und Upload-Konfiguration getrennt beurteilen. Der gesamte Lauf bleibt bei einem Uploadfehler fehlgeschlagen, auch wenn die bereits veröffentlichte Seite den aktuellen Build ausliefert.
+
 Pull Requests laden nichts auf den Webserver. Uploads laufen nacheinander; ein laufender Upload wird nicht durch einen neuen Push unterbrochen. Neue Assets werden vor HTML übertragen. Jede Datei wird zunächst unter einem temporären Namen hochgeladen und dann umbenannt. Der Ablauf ist kein atomarer Austausch der gesamten Website.
 
 Nur die Build-Dateien werden übertragen. Bereits vorhandene Dateien werden bei gleichen Namen ersetzt; fremde Dateien und alte Assets werden nicht pauschal gelöscht. Deshalb das Ziel ausschließlich für diese Webseite verwenden. Eine ältere Version lässt sich über einen Git-Revert und erneuten erfolgreichen Build veröffentlichen.
