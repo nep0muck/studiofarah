@@ -1,5 +1,5 @@
 import { createHash } from 'node:crypto';
-import { readFile } from 'node:fs/promises';
+import { appendFile, readFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { site, priceListInfo } from '../src/data/site.ts';
@@ -37,6 +37,7 @@ async function request(initial) {
   throw new Error('The public website redirected too many times.');
 }
 
+async function verify() {
 for (const item of files) {
   const url = new URL(item.path, site.url);
   if (url.protocol !== 'https:') throw new Error('Live checks require HTTPS.');
@@ -52,4 +53,19 @@ for (const item of files) {
     throw new Error(`Live check failed for ${item.path}: the public file differs from this build. Check the domain destination, document root and caches.`);
   }
   console.log(`Verified HTTPS response and build contents: ${item.path}`);
+}
+}
+
+try {
+  await verify();
+} catch (error) {
+  const cause = error.cause?.code;
+  const code = typeof cause === 'string' && /^[A-Z0-9_]+$/.test(cause) ? ` (${cause})` : '';
+  const message = `Public HTTPS verification: ${error.message}${code}`;
+  const escaped = message.replaceAll('%', '%25').replaceAll('\r', '%0D').replaceAll('\n', '%0A');
+  console.error(`::error title=Public website verification::${escaped}`);
+  if (process.env.GITHUB_STEP_SUMMARY) {
+    await appendFile(process.env.GITHUB_STEP_SUMMARY, `\n### Public website verification failed\n\n${message}\n`);
+  }
+  process.exitCode = 1;
 }
