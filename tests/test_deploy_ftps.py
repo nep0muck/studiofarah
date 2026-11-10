@@ -118,6 +118,18 @@ class DeploymentTests(unittest.TestCase):
         self.assertEqual(self.configuration().port, 21)
         self.assertNotIn(self.env['HETZNER_FTP_PASSWORD'], repr(self.configuration()))
 
+    def test_directory_copy_whitespace_is_normalized_without_changing_password(self):
+        environ = self.env | {
+            'HETZNER_REMOTE_DIR': ' \t/site/\r\n',
+            'HETZNER_FTP_PASSWORD': ' keep password spaces ',
+        }
+        configuration = deploy_ftps.read_configuration(environ)
+        self.assertEqual(configuration.directory, '/site')
+        self.assertEqual(configuration.password, ' keep password spaces ')
+        self.assertEqual(environ['HETZNER_REMOTE_DIR'], ' \t/site/\r\n')
+        with self.assertRaises(deploy_ftps.DeploymentError):
+            deploy_ftps.read_configuration(self.env | {'HETZNER_REMOTE_DIR': ' \r\n\t '})
+
     def test_configuration_rejects_urls_traversal_and_command_injection(self):
         invalid_values = {
             'HETZNER_FTP_HOST': ['ftp://example.org', 'example.org:21', 'user@example.org', 'example.org\r\nDELE x'],

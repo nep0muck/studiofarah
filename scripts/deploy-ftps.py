@@ -51,6 +51,11 @@ def _control_characters(value: str) -> bool:
 
 
 def read_configuration(environ: Mapping[str, str]) -> Configuration:
+    # GitHub's multiline variable editor can add a copied trailing line break.
+    # Normalize formatting around the directory, never inside it or in passwords.
+    environ = dict(environ)
+    if 'HETZNER_REMOTE_DIR' in environ:
+        environ['HETZNER_REMOTE_DIR'] = environ['HETZNER_REMOTE_DIR'].strip(' \t\r\n')
     required = (
         'HETZNER_FTP_HOST', 'HETZNER_FTP_USERNAME',
         'HETZNER_FTP_PASSWORD', 'HETZNER_REMOTE_DIR',

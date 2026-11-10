@@ -26,6 +26,8 @@ Der Upload verwendet **explizites FTPS mit geprüftem TLS-Zertifikat und verschl
 
 Der Standardport ist 21 für explizites FTPS. **SFTP ist ein anderes Protokoll und wird von diesem Uploadskript nicht verwendet.** Der gültige Zielpfad hängt vom FTP-Login und dessen Verzeichnisbeschränkung ab. `/` ist nur dann richtig, wenn der bestätigte FTP-Stammordner bereits das Dokumentenverzeichnis der Domain ist.
 
+Beim Kopieren des Zielpfads mitgenommene Leerzeichen, Tabs und Zeilenumbrüche am Rand werden entfernt. Steuerzeichen innerhalb eines Pfads werden abgewiesen; Passwörter werden nicht verändert.
+
 3. GitHub Actions für das Repository aktivieren, falls noch deaktiviert. Nach dem Setzen der Werte unter **Actions → Build and deploy to Hetzner → Run workflow** den Branch `main` starten. Anschließend den erfolgreichen Upload und die öffentliche Domain einschließlich PDF-Download prüfen. Eine erfolgreiche lokale Prüfung ersetzt diese erste echte Hetzner-Verbindung nicht.
 
 ## Laufender Ablauf
