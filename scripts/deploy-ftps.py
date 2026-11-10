@@ -194,24 +194,32 @@ def _open_source_file(tree: SourceTree, entry: SourceFile):
 def deploy(tree: SourceTree, configuration: Configuration,
            ftp_factory=SessionReuseFTP_TLS) -> None:
     client = None
+    operation = 'initialize TLS'
     try:
         context = ssl.create_default_context()
         if configuration.ca_file:
             context.load_verify_locations(cafile=configuration.ca_file)
         client = ftp_factory(context=context, timeout=30, encoding='utf-8')
+        operation = 'connect to server'
         client.connect(configuration.host, configuration.port, timeout=30)
+        operation = 'TLS authentication'
         client.login(configuration.username, configuration.password)
+        operation = 'protect the data connection'
         client.prot_p()
         client.set_pasv(True)
+        operation = 'enter the target directory'
         _enter_directory(client, configuration.directory)
         root = client.pwd()
         for entry in tree.files:
+            operation = 'enter a deployment subdirectory'
             client.cwd(root)
             _enter_directory(client, entry.relative.parent.as_posix())
             temporary = f'.deploy-{uuid.uuid4().hex}.tmp'
             try:
                 with _open_source_file(tree, entry) as stream:
+                    operation = f'upload {entry.relative.as_posix()}'
                     client.storbinary(f'STOR {temporary}', stream, blocksize=65536)
+                operation = f'rename {entry.relative.as_posix()}'
                 client.rename(temporary, entry.relative.name)
             except Exception:
                 # This name belongs to this upload, never to an existing site file.
@@ -225,15 +233,21 @@ def deploy(tree: SourceTree, configuration: Configuration,
     except ftplib.error_perm as error:
         code = str(error)[:3]
         suffix = f' (FTP {code})' if re.fullmatch(r'[0-9]{3}', code) else ''
-        raise DeploymentError(f'The FTPS server refused an operation{suffix}; upload stopped.') from None
+        raise DeploymentError(f'The FTPS server refused to {operation}{suffix}; upload stopped.') from None
     except ftplib.all_errors:
-        raise DeploymentError('The FTPS connection or upload failed; check the connection and TLS configuration.') from None
+        raise DeploymentError(f'The FTPS connection failed during {operation}; check the connection and TLS configuration.') from None
     finally:
         if client is not None:
             client.close()
 
 
 def main(argv=None, environ=None, ftp_factory=SessionReuseFTP_TLS) -> int:
+    effective_environ = os.environ if environ is None else environ
+    def report(message):
+        print(message, file=sys.stderr)
+        if effective_environ.get('GITHUB_ACTIONS') == 'true':
+            escaped = message.replace('%', '%25').replace('\r', '%0D').replace('\n', '%0A')
+            print(f'::error title=Hetzner FTPS upload::{escaped}', file=sys.stderr)
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--source', default='dist', help='Static build directory (default: dist)')
     parser.add_argument('--dry-run', action='store_true', help='Validate and list files without any network access')
@@ -246,16 +260,16 @@ def main(argv=None, environ=None, ftp_factory=SessionReuseFTP_TLS) -> int:
                 print(f'{entry.size:>10}  {entry.relative.as_posix()}')
             print(f'Dry run: {len(tree.files)} files, {total} bytes; no network connection made.')
             return 0
-        configuration = read_configuration(os.environ if environ is None else environ)
+        configuration = read_configuration(effective_environ)
         deploy(tree, configuration, ftp_factory=ftp_factory)
         print(f'Uploaded {len(tree.files)} files ({total} bytes) over verified FTPS.')
         return 0
     except DeploymentError as error:
-        print(f'Deployment failed: {error}', file=sys.stderr)
+        report(f'Deployment failed: {error}')
         return 1
     except Exception:
         # Never echo a library exception: server messages may include credentials.
-        print('Deployment failed because of an unexpected local error.', file=sys.stderr)
+        report('Deployment failed because of an unexpected local error.')
         return 1
 
 

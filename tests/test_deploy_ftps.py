@@ -235,6 +235,24 @@ class DeploymentTests(unittest.TestCase):
         self.assertEqual(server.files, {'/site/keep-old.css': b'existing asset'})
         self.assertTrue(all('/.deploy-' in path for path in server.deletions))
 
+    def test_github_annotation_identifies_operation_without_server_reply(self):
+        class RefusesRename(MemoryFTP):
+            def rename(self, original, target):
+                raise ftplib.error_perm('550 private-server-reply')
+        server = RefusesRename(context=ssl.create_default_context(), timeout=30, encoding='utf-8')
+        error = io.StringIO()
+        with redirect_stderr(error):
+            result = deploy_ftps.main(
+                ['--source', str(self.root)],
+                environ={**self.env, 'GITHUB_ACTIONS': 'true'},
+                ftp_factory=lambda **kwargs: server,
+            )
+        self.assertEqual(result, 1)
+        self.assertIn('::error title=Hetzner FTPS upload::', error.getvalue())
+        self.assertIn('rename assets/site.css (FTP 550)', error.getvalue())
+        self.assertNotIn('private-server-reply', error.getvalue())
+        self.assertNotIn(self.env['HETZNER_FTP_PASSWORD'], error.getvalue())
+
     def test_data_connections_require_tls_and_reuse_verified_control_session(self):
         client = deploy_ftps.SessionReuseFTP_TLS(context=ssl.create_default_context())
         self.addCleanup(client.close)
